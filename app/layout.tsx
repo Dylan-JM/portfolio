@@ -26,7 +26,6 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <Header />
       <body
         className={`
     ${geistSans.variable}
@@ -35,6 +34,7 @@ export default function RootLayout({
     bg-slate-950 text-slate-200
   `}
       >
+        <Header />
         {children}
         <Footer />
       </body>

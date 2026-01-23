@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import Image from "next/image";
 import { projects } from "@/app/data/projects";
 import Gallery from "./Gallery";
+import VideoPlayer from "./VideoPlayer";
 
 export default async function ProjectPage({
   params,
@@ -19,18 +20,12 @@ export default async function ProjectPage({
         {/* Title */}
         <h1 className="text-4xl font-bold text-slate-50">{project.title}</h1>
 
-        {/* Thumbnail */}
-        {project.thumbnail && (
-          <div className="rounded-lg overflow-hidden">
-            <Image
-              src={project.thumbnail}
-              alt={project.title}
-              width={1200}
-              height={700}
-              className="w-full h-auto object-cover"
-            />
-          </div>
-        )}
+        {/* Video */}
+        <VideoPlayer
+          id={project.video}
+          title={project.title}
+          thumbnail={project.thumbnail} // optional
+        />
 
         {/* Description */}
         <p className="text-slate-300 text-lg leading-relaxed">

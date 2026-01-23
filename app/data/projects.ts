@@ -38,6 +38,7 @@ export const projects: Project[] = [
       `/projects/dedicated-servers/Dedicated-Servers-Leaderboard.png`,
     ],
     category: "game",
+    video: "tmofhnkKzoM",
   },
   {
     title: "Multiplayer Dungeon Crawler",
@@ -67,5 +68,6 @@ export const projects: Project[] = [
     thumbnail: "/images/projects/horror-dungeon.png", // replace with actual path
     images: ["/images/projects/horror-dungeon.png"], // or add more if needed
     category: "game",
+    video: "GKxt2N9Is2Q",
   },
 ];
