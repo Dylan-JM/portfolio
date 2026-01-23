@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { projects } from "@/app/data/projects";
+import Gallery from "./Gallery";
 
 export default async function ProjectPage({
   params,
@@ -69,25 +70,12 @@ export default async function ProjectPage({
           </section>
         )}
 
-        {/* Gallery */}
         {project.images && project.images.length > 0 && (
           <section>
             <h2 className="text-2xl font-semibold text-slate-50 mb-4">
               Gallery
             </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              {project.images.map((img) => (
-                <div key={img} className="rounded-lg overflow-hidden">
-                  <Image
-                    src={img}
-                    alt={project.title}
-                    width={800}
-                    height={600}
-                    className="w-full h-auto object-cover"
-                  />
-                </div>
-              ))}
-            </div>
+            <Gallery images={project.images} title={project.title} />
           </section>
         )}
       </div>

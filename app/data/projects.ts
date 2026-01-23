@@ -33,6 +33,10 @@ export const projects: Project[] = [
       "Cloud Architecture",
     ],
     thumbnail: `/projects/dedicated-servers/Dedicated-Servers-Game.png`,
+    images: [
+      `/projects/dedicated-servers/Dedicated-Servers-Career.png`,
+      `/projects/dedicated-servers/Dedicated-Servers-Leaderboard.png`,
+    ],
     category: "game",
   },
   {
