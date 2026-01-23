@@ -32,10 +32,10 @@ export const projects: Project[] = [
       "Leaderboard System",
       "Cloud Architecture",
     ],
-    thumbnail: `/projects/dedicated-servers/Dedicated-Servers-Game.png`,
+    thumbnail: "/projects/dedicated-servers/Dedicated-Servers-Game.png",
     images: [
-      `/projects/dedicated-servers/Dedicated-Servers-Career.png`,
-      `/projects/dedicated-servers/Dedicated-Servers-Leaderboard.png`,
+      "/projects/dedicated-servers/Dedicated-Servers-Career.png",
+      "/projects/dedicated-servers/Dedicated-Servers-Leaderboard.png",
     ],
     category: "game",
     video: "tmofhnkKzoM",
@@ -65,8 +65,15 @@ export const projects: Project[] = [
       "Multiplayer Networking",
       "SaveGame System",
     ],
-    thumbnail: "/images/projects/horror-dungeon.png", // replace with actual path
-    images: ["/images/projects/horror-dungeon.png"], // or add more if needed
+    thumbnail: "/projects/dungeon/Dungeon-Thumbnail.png",
+    images: [
+      "/projects/dungeon/Dungeon-Inventory.png",
+      "/projects/dungeon/Dungeon-Mobs.png",
+      "/projects/dungeon/Dungeon-Boss1.png",
+      "/projects/dungeon/Dungeon-Boss2.png",
+      "/projects/dungeon/Dungeon-Boss3.png",
+      "/projects/dungeon/Dungeon-Boss5.png",
+    ],
     category: "game",
     video: "GKxt2N9Is2Q",
   },
