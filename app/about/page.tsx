@@ -1,10 +1,18 @@
+import Image from "next/image";
+
 export default function AboutPage() {
   return (
     <main className="min-h-screen w-full px-6 py-16">
       <div className="max-w-4xl mx-auto space-y-10">
         {/* Title */}
         <h1 className="text-4xl font-bold text-slate-50">About Me</h1>
-
+        <Image
+          src="/Graduate Picture.jpg" // replace with actual path
+          alt="Dylan Marley"
+          width={160}
+          height={160}
+          className="rounded-full border-4 border-slate-700 mx-auto mb-6"
+        />
         {/* Intro */}
         <p className="text-slate-300 text-lg leading-relaxed">
           I’m Dylan Marley, a full stack and game developer with experience
