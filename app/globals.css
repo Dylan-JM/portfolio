@@ -1,1 +1,44 @@
 @import "tailwindcss";
+
+/* ------------------------------ */
+/* Global reset tweaks            */
+/* ------------------------------ */
+* {
+  box-sizing: border-box;
+}
+
+/* ------------------------------ */
+/* Global theme                   */
+/* ------------------------------ */
+html,
+body {
+  height: 100%;
+}
+
+/* 
+  IMPORTANT:
+  This background WILL apply because:
+  - It's on body AND html
+  - It uses !important to override Tailwind preflight
+  - Your layout does NOT set a background class
+*/
+body {
+  background-color: #0f172a !important; /* deep slate / tech navy */
+  color: #e2e8f0; /* slate-200 text */
+  font-family: var(--font-geist-sans), sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ------------------------------ */
+/* Optional: smooth scroll        */
+/* ------------------------------ */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ------------------------------ */
+/* Optional: remove tap highlight */
+/* ------------------------------ */
+body {
+  -webkit-tap-highlight-color: transparent;
+}

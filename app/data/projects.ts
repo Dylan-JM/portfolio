@@ -33,5 +33,35 @@ export const projects: Project[] = [
       "Cloud Architecture",
     ],
     thumbnail: `/projects/dedicated-servers/Dedicated-Servers-Game.png`,
+    category: "game",
+  },
+  {
+    title: "Multiplayer Dungeon Crawler",
+    slug: "horror-dungeon-crawler",
+    description:
+      "4-player horror dungeon crawler built with Unreal Engine’s Gameplay Ability System.",
+    tags: ["Unreal Engine", "Multiplayer", "GAS", "AI", "Combat", "Networking"],
+    longDescription:
+      "Developed a 4-player horror dungeon crawler using Unreal Engine’s Gameplay Ability System (GAS). Built core gameplay around class-based mechanics, light-triggered debuffs, and scalable combat systems. Implemented advanced AI using behavior trees and C++/Blueprint hybrid logic. Designed multiplayer architecture with lobby selection, persistent SaveGame slots, and insurance-based inventory retention.",
+    features: [
+      "Gameplay Ability System for scalable combat and class mechanics",
+      "Multiplayer lobby selection and session management",
+      "Light-based debuff system tied to environment triggers",
+      "Advanced AI using behavior trees and GAS-driven ability activation",
+      "SaveGame system with multiple slots and persistent progression",
+      "Insurance inventory system for death-safe item retention",
+    ],
+    tech: [
+      "Unreal Engine 5",
+      "Gameplay Ability System (GAS)",
+      "C++",
+      "Blueprints",
+      "Behavior Trees",
+      "Multiplayer Networking",
+      "SaveGame System",
+    ],
+    thumbnail: "/images/projects/horror-dungeon.png", // replace with actual path
+    images: ["/images/projects/horror-dungeon.png"], // or add more if needed
+    category: "game",
   },
 ];

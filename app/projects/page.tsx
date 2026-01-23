@@ -2,15 +2,34 @@ import { projects } from "@/app/data/projects";
 import ProjectCard from "@/app/components/ProjectCard";
 
 export default function ProjectsPage() {
-  return (
-    <section className="py-16 px-6 max-w-6xl mx-auto">
-      <h1 className="text-3xl font-bold mb-8">Projects</h1>
+  const gameProjects = projects.filter((p) => p.category === "game");
+  const webProjects = projects.filter((p) => p.category === "web");
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.map((project) => (
-          <ProjectCard key={project.slug} project={project} />
-        ))}
+  return (
+    <main className="min-h-screen w-full px-6 py-16">
+      <div className="max-w-6xl mx-auto space-y-16">
+        <section>
+          <h2 className="text-3xl font-bold text-slate-50 mb-8">
+            Web Projects
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {webProjects.map((project) => (
+              <ProjectCard key={project.slug} project={project} />
+            ))}
+          </div>
+        </section>
+
+        <section>
+          <h2 className="text-3xl font-bold text-slate-50 mb-8">
+            Game Projects
+          </h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {gameProjects.map((project) => (
+              <ProjectCard key={project.slug} project={project} />
+            ))}
+          </div>
+        </section>
       </div>
-    </section>
+    </main>
   );
 }

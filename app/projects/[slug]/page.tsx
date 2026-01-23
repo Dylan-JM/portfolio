@@ -1,0 +1,96 @@
+import { notFound } from "next/navigation";
+import Image from "next/image";
+import { projects } from "@/app/data/projects";
+
+export default async function ProjectPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const { slug } = await params;
+  const project = projects.find((p) => p.slug === slug);
+
+  if (!project) return notFound();
+
+  return (
+    <main className="min-h-screen w-full px-6 py-16">
+      <div className="max-w-4xl mx-auto space-y-10">
+        {/* Title */}
+        <h1 className="text-4xl font-bold text-slate-50">{project.title}</h1>
+
+        {/* Thumbnail */}
+        {project.thumbnail && (
+          <div className="rounded-lg overflow-hidden">
+            <Image
+              src={project.thumbnail}
+              alt={project.title}
+              width={1200}
+              height={700}
+              className="w-full h-auto object-cover"
+            />
+          </div>
+        )}
+
+        {/* Description */}
+        <p className="text-slate-300 text-lg leading-relaxed">
+          {project.longDescription}
+        </p>
+
+        {/* Features */}
+        {project.features.length > 0 && (
+          <section>
+            <h2 className="text-2xl font-semibold text-slate-50 mb-4">
+              Features
+            </h2>
+            <ul className="list-disc list-inside space-y-2 text-slate-300">
+              {project.features.map((feature) => (
+                <li key={feature}>{feature}</li>
+              ))}
+            </ul>
+          </section>
+        )}
+
+        {/* Tech Stack */}
+        {project.tech.length > 0 && (
+          <section>
+            <h2 className="text-2xl font-semibold text-slate-50 mb-4">
+              Tech Stack
+            </h2>
+            <div className="flex flex-wrap gap-2">
+              {project.tech.map((tech) => (
+                <span
+                  key={tech}
+                  className="bg-indigo-500 text-slate-50 px-3 py-1 rounded-full text-sm"
+                >
+                  {tech}
+                </span>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Gallery */}
+        {project.images && project.images.length > 0 && (
+          <section>
+            <h2 className="text-2xl font-semibold text-slate-50 mb-4">
+              Gallery
+            </h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {project.images.map((img) => (
+                <div key={img} className="rounded-lg overflow-hidden">
+                  <Image
+                    src={img}
+                    alt={project.title}
+                    width={800}
+                    height={600}
+                    className="w-full h-auto object-cover"
+                  />
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+      </div>
+    </main>
+  );
+}
