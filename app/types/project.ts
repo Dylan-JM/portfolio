@@ -6,8 +6,9 @@ export type Project = {
   longDescription: string;
   features: string[];
   tech: string[];
-  thumbnail?: string; // used ONLY on the card
-  images?: string[]; // used on the project page
-  category: "game" | "web";
-  video: string;
+  thumbnail?: string;
+  images?: string[];
+  category: "game" | "web" | "startup";
+  video?: string;
+  website?: string;
 };

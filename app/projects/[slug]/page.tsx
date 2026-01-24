@@ -20,12 +20,26 @@ export default async function ProjectPage({
         {/* Title */}
         <h1 className="text-4xl font-bold text-slate-50">{project.title}</h1>
 
-        {/* Video */}
-        <VideoPlayer
-          id={project.video}
-          title={project.title}
-          thumbnail={project.thumbnail} // optional
-        />
+        {/* Video (optional) */}
+        {project.video && (
+          <VideoPlayer
+            id={project.video}
+            title={project.title}
+            thumbnail={project.thumbnail}
+          />
+        )}
+
+        {/* Website (optional) */}
+        {project.website && (
+          <a
+            href={project.website}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition"
+          >
+            Visit Website
+          </a>
+        )}
 
         {/* Description */}
         <p className="text-slate-300 text-lg leading-relaxed">
@@ -65,6 +79,7 @@ export default async function ProjectPage({
           </section>
         )}
 
+        {/* Gallery */}
         {project.images && project.images.length > 0 && (
           <section>
             <h2 className="text-2xl font-semibold text-slate-50 mb-4">
