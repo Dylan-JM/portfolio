@@ -1,4 +1,4 @@
-import { Project } from "@/app/types/project";
+import { Project } from "@/app/_types/project";
 
 export const projects: Project[] = [
   {
@@ -310,5 +310,54 @@ export const projects: Project[] = [
     thumbnail: "/projects/darkflow/Darkflow-Main.jpg",
     category: "startup",
     website: "https://store.steampowered.com/app/2457820/Darkflow/",
+  },
+  {
+    title: "Game Forum",
+    slug: "game-forum",
+    description:
+      "Forum-style web app for posting reviews, bug reports, and suggestions about a video game.",
+    tags: [
+      "React",
+      "Express",
+      "SQL",
+      "Full Stack",
+      "Forum",
+      "Routing",
+      "User Login",
+      "Database Polling",
+    ],
+    longDescription:
+      "Built a full-stack forum website where users can post reviews, bug reports, suggestions, and general feedback about a video game. The app supports dynamic routing, category filtering, post deletion, and like functionality. I implemented user login and profiles as an extra feature beyond the assignment brief. The frontend is built with React and React Router, and the backend uses Express with SQL queries to fetch and manage post data. I designed the database schema and seeded it with realistic data, then used .map() and polling logic to render new posts in real time. The UI is responsive and intuitive, with multi-page navigation and a clean post creation flow.",
+    features: [
+      "Create, read, and delete posts with category tagging",
+      "Dynamic routing for individual posts and category views",
+      "Like functionality to upvote posts",
+      "User login and profile page",
+      "Responsive multi-page layout using React Router",
+      "Database polling with useEffect and interval logic",
+      "Seeded realistic data for testing and development",
+      "SQL queries for filtered post retrieval",
+    ],
+    tech: [
+      "React",
+      "React Router",
+      "Express",
+      "Node.js",
+      "SQL",
+      "PostgreSQL",
+      "Authentication",
+      "Database Polling",
+    ],
+    thumbnail: "/projects/forum/Forum-Main.png",
+    images: [
+      "/projects/forum/Forum-Main.png",
+      "/projects/forum/Forum-Create.png",
+      "/projects/forum/Forum-User-Profile.png",
+      "/projects/forum/Forum-User-Login.png",
+    ],
+    category: "web",
+    website: "https://forum-3nwm.onrender.com/",
+    server: "https://forum-server-6tz1.onrender.com/",
+    github: "https://github.com/Dylan-JM/week07-assignment",
   },
 ];

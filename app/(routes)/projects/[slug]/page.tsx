@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
-import Image from "next/image";
-import { projects } from "@/app/data/projects";
+import { projects } from "@/app/_data/projects";
 import Gallery from "./Gallery";
 import VideoPlayer from "./VideoPlayer";
 
@@ -29,17 +28,51 @@ export default async function ProjectPage({
           />
         )}
 
-        {/* Website (optional) */}
-        {project.website && (
-          <a
-            href={project.website}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition"
-          >
-            Visit Website
-          </a>
-        )}
+        {/* External Links */}
+        <div className="flex flex-col gap-3">
+          {/* Server Wake-Up Link (optional) */}
+          {project.server && (
+            <div className="flex flex-col gap-1">
+              <a
+                href={project.server}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-fit bg-slate-700 hover:bg-slate-600 text-white px-6 py-3 rounded-lg font-medium transition"
+              >
+                Wake Server
+              </a>
+
+              <p className="text-sm text-slate-400">
+                Please wake the server before visiting the website (Render cold
+                start).
+              </p>
+            </div>
+          )}
+
+          {/* Website (optional) */}
+          {project.website && (
+            <a
+              href={project.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-fit bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-3 rounded-lg font-medium transition"
+            >
+              Visit Website
+            </a>
+          )}
+
+          {/* GitHub (optional) */}
+          {project.github && (
+            <a
+              href={project.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="w-fit bg-slate-800 hover:bg-slate-700 text-white px-6 py-3 rounded-lg font-medium transition"
+            >
+              View GitHub Repo
+            </a>
+          )}
+        </div>
 
         {/* Description */}
         <p className="text-slate-300 text-lg leading-relaxed">

@@ -11,4 +11,6 @@ export type Project = {
   category: "game" | "web" | "startup";
   video?: string;
   website?: string;
+  server?: string;
+  github?: string;
 };

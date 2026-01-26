@@ -1,5 +1,5 @@
-import { projects } from "@/app/data/projects";
-import ProjectCard from "@/app/components/ProjectCard";
+import { projects } from "@/app/_data/projects";
+import ProjectCard from "@/app/_components/ProjectCard";
 
 export default function ProjectsPage() {
   const startupCompanies = projects.filter((p) => p.category === "startup");
