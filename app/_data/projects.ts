@@ -178,7 +178,7 @@ export const projects: Project[] = [
       "Multiplayer",
     ],
     longDescription:
-      "Dominium was built as part of a university group project where we simulated a real studio workflow using Jira and GitHub. I worked as a programmer on the team, focusing on core gameplay systems and AI behaviour. The game mixes first-person interaction with city‑building mechanics, letting players place structures, expand their settlement, and work toward milestone goals. AI workers gather resources based on assigned jobs, follow daily routines, and return home at night instead of passively generating resources. A day/night cycle drives much of the city’s activity, influencing worker behaviour and pacing the player’s progression.",
+      "Dominium was built as part of a university group project where we simulated a real studio workflow using Jira and GitHub. I worked as a programmer on the team, focusing on core gameplay systems and AI behaviour. The game mixes first-person interaction with city-building mechanics, letting players place structures, expand their settlement, and work toward milestone goals. AI workers gather resources based on assigned jobs, follow daily routines, and return home at night instead of passively generating resources. A day/night cycle drives much of the city`s activity, influencing worker behaviour and pacing the player`s progression.",
     features: [
       "First-person gameplay with direct interaction and task resolution",
       "Building placement system for city expansion and milestone tracking",
@@ -249,7 +249,7 @@ export const projects: Project[] = [
     title: "ENDs",
     slug: "ends",
     description:
-      "Open-world systems project focused on large‑scale AI, vehicle simulation, and quest framework development.",
+      "Open-world systems project focused on large-scale AI, vehicle simulation, and quest framework development.",
     tags: [
       "Unreal Engine",
       "Mass AI",
@@ -260,13 +260,13 @@ export const projects: Project[] = [
       "Quest Framework",
     ],
     longDescription:
-      "ENDs is an open‑world systems project where I worked on large‑scale AI, vehicle simulation, and quest framework improvements. I integrated Unreal Engine’s Mass framework to support high‑volume pedestrian and vehicle AI, and expanded the quest system using C++ to make it more flexible and scalable. I also implemented enemy chasing behaviour, realistic vehicle driving, and deformation systems. The focus of my work was on performance‑friendly AI, systemic gameplay, and building foundations for a large, dynamic world.",
+      "ENDs is an open-world systems project where I worked on large-scale AI, vehicle simulation, and quest framework improvements. I integrated Unreal Engine’s Mass framework to support high-volume pedestrian and vehicle AI, and expanded the quest system using C++ to make it more flexible and scalable. I also implemented enemy chasing behaviour, realistic vehicle driving, and deformation systems. The focus of my work was on performance-friendly AI, systemic gameplay, and building foundations for a large, dynamic world.",
     features: [
-      "Integrated Unreal Engine Mass framework for large‑scale pedestrian and vehicle AI",
+      "Integrated Unreal Engine Mass framework for large-scale pedestrian and vehicle AI",
       "Expanded and improved the quest framework using C++",
       "Implemented enemy chasing AI and behaviour systems",
       "Developed realistic vehicle driving and deformation",
-      "Worked with new Unreal Engine technologies for open‑world scalability",
+      "Worked with new Unreal Engine technologies for open-world scalability",
     ],
     tech: [
       "Unreal Engine 5",
@@ -285,24 +285,24 @@ export const projects: Project[] = [
     title: "Darkflow",
     slug: "darkflow",
     description:
-      "Sci‑fi adventure RPG where I focused on core gameplay systems including ballistics, AI, and movement mechanics.",
+      "Sci-fi adventure RPG where I focused on core gameplay systems including ballistics, AI, and movement mechanics.",
     tags: [
       "Unreal Engine",
       "RPG",
-      "Sci‑Fi",
+      "Sci-Fi",
       "C++",
       "Gameplay Systems",
       "AI",
       "Movement Mechanics",
     ],
     longDescription:
-      "Darkflow is a sci‑fi adventure RPG set across a universe‑spanning storyline. I worked as a developer in a small team, focusing on core gameplay mechanics and systemic features. My contributions included developing accurate ballistic behaviour for weapons, implementing intelligent AI for companion turrets, and creating fluid hoverboard movement. The project blends narrative‑driven progression with combat against alien factions, cybernetically enhanced enemies, and larger forces shaping the world behind the scenes.",
+      "Darkflow is a sci-fi adventure RPG set across a universe-spanning storyline. I worked as a developer in a small team, focusing on core gameplay mechanics and systemic features. My contributions included developing accurate ballistic behaviour for weapons, implementing intelligent AI for companion turrets, and creating fluid hoverboard movement. The project blends narrative-driven progression with combat against alien factions, cybernetically enhanced enemies, and larger forces shaping the world behind the scenes.",
     features: [
       "Accurate ballistic weapon behaviour",
       "Intelligent companion turret AI",
       "Fluid hoverboard movement mechanics",
-      "Combat against alien factions and cyber‑enhanced enemies",
-      "Narrative‑driven sci‑fi adventure across multiple worlds",
+      "Combat against alien factions and cyber-enhanced enemies",
+      "Narrative-driven sci-fi adventure across multiple worlds",
     ],
     tech: [
       "Unreal Engine 5",
