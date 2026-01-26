@@ -20,7 +20,7 @@ export default function HomePage() {
 
           <p className="text-slate-300 text-lg leading-relaxed max-w-2xl">
             I’m Dylan Marley, a developer specialising in Web Development with
-            Javascipt, NextJs, TypeScript and Game Development with Unreal
+            Javascript, NextJs, TypeScript and Game Development with Unreal
             Engine and C++ along with cloud-backed multiplayer systems. I build
             production-ready features for both web applications and games.
           </p>
@@ -49,6 +49,18 @@ export default function HomePage() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 text-slate-300">
             <div className="space-y-2">
               <h3 className="text-xl font-semibold text-slate-100">
+                Full Stack Development
+              </h3>
+              <ul className="list-disc list-inside space-y-1">
+                <li>Next.js, TypeScript, Express, React</li>
+                <li>REST APIs & backend architecture</li>
+                <li>MySQL, PostgreSQL, DynamoDB</li>
+                <li>AWS (Cognito, Lambda, cloud services)</li>
+              </ul>
+            </div>
+
+            <div className="space-y-2">
+              <h3 className="text-xl font-semibold text-slate-100">
                 Game Development
               </h3>
               <ul className="list-disc list-inside space-y-1">
@@ -57,18 +69,6 @@ export default function HomePage() {
                 <li>AI behaviour systems & Mass framework</li>
                 <li>Gameplay mechanics & combat systems</li>
                 <li>Multiplayer & replication</li>
-              </ul>
-            </div>
-
-            <div className="space-y-2">
-              <h3 className="text-xl font-semibold text-slate-100">
-                Full Stack Development
-              </h3>
-              <ul className="list-disc list-inside space-y-1">
-                <li>Next.js, TypeScript, Express, React</li>
-                <li>REST APIs & backend architecture</li>
-                <li>MySQL, PostgreSQL, DynamoDB</li>
-                <li>AWS (Cognito, Lambda, cloud services)</li>
               </ul>
             </div>
           </div>
