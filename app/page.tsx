@@ -15,14 +15,14 @@ export default function HomePage() {
         {/* Hero Section */}
         <section className="space-y-6">
           <h1 className="text-5xl font-bold text-slate-50 leading-tight">
-            Full Stack & Game Developer
+            Full Stack Developer
           </h1>
 
           <p className="text-slate-300 text-lg leading-relaxed max-w-2xl">
-            I’m Dylan Marley, a developer specialising in Unreal Engine, C++,
-            React, Express, SQL, and cloud-backed multiplayer systems. I build
-            scalable gameplay mechanics, AI behaviour, REST APIs, and
-            production-ready features for both games and web applications.
+            I’m Dylan Marley, a developer specialising in Web Development with
+            Javascipt, NextJs, TypeScript and Game Development with Unreal
+            Engine and C++ along with cloud-backed multiplayer systems. I build
+            production-ready features for both web applications and games.
           </p>
 
           <div className="flex gap-4 pt-4">
@@ -53,6 +53,7 @@ export default function HomePage() {
               </h3>
               <ul className="list-disc list-inside space-y-1">
                 <li>Unreal Engine 5 (C++, Blueprints)</li>
+                <li>Dedicated servers with AWS</li>
                 <li>AI behaviour systems & Mass framework</li>
                 <li>Gameplay mechanics & combat systems</li>
                 <li>Multiplayer & replication</li>
@@ -64,7 +65,7 @@ export default function HomePage() {
                 Full Stack Development
               </h3>
               <ul className="list-disc list-inside space-y-1">
-                <li>React, Next.js, Express</li>
+                <li>Next.js, TypeScript, Express, React</li>
                 <li>REST APIs & backend architecture</li>
                 <li>MySQL, PostgreSQL, DynamoDB</li>
                 <li>AWS (Cognito, Lambda, cloud services)</li>

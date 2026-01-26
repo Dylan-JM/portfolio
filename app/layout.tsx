@@ -17,16 +17,16 @@ const geistMono = Geist_Mono({
 export const metadata = {
   title: "Dylan Marley — Portfolio",
   description:
-    "Full-stack and game developer specialising in Unreal Engine, React, and scalable systems.",
+    "Full-stack and game developer specialising in Web Development with JS and Game Development with Unreal Engine C++.",
   openGraph: {
     title: "Dylan Marley — Developer Portfolio",
     description:
-      "Full-stack and game developer specialising in Unreal Engine, React, and scalable systems.",
+      "Full-stack and game developer specialising in Web Development with JS and Game Development with Unreal Engine C++.",
     url: "https://portfolio-pi-ochre-49.vercel.app/projects",
     siteName: "Dylan Marley Portfolio",
     images: [
       {
-        url: "/Graduate Picture.jpg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Portfolio preview",
