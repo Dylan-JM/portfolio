@@ -14,12 +14,7 @@ export default function VideoPlayer({
 }) {
   return (
     <div className="w-full max-w-4xl mx-auto rounded-lg overflow-hidden shadow-lg">
-      <LiteYouTubeEmbed
-        id={id}
-        title={title}
-        poster={thumbnail ? "custom" : "maxresdefault"}
-        thumbnail={thumbnail}
-      />
+      <LiteYouTubeEmbed id={id} title={title} thumbnail={thumbnail} />
     </div>
   );
 }
