@@ -35,6 +35,8 @@ export default function ProjectCard({ project }: { project: Project }) {
 
       <p className="text-sm text-slate-300 mb-4">{project.description}</p>
 
+      {project.date && <p className="text-slate-400 text-sm">{project.date}</p>}
+
       <div className="flex flex-wrap gap-2 text-xs">
         {project.tags.map((tag) => (
           <span

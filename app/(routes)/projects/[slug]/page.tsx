@@ -19,6 +19,11 @@ export default async function ProjectPage({
         {/* Title */}
         <h1 className="text-4xl font-bold text-slate-50">{project.title}</h1>
 
+        {/* Note (optional) */}
+        {project.note && (
+          <p className="text-sm text-slate-400">{project.note}</p>
+        )}
+
         {/* Video (optional) */}
         {project.video && (
           <VideoPlayer

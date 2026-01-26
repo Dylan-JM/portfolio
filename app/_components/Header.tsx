@@ -21,6 +21,12 @@ export default function Header() {
           <Link href="/contact" className="hover:text-white transition">
             Contact
           </Link>
+          <Link
+            href="https://github.com/Dylan-JM"
+            className="hover:text-white transition"
+          >
+            GitHub
+          </Link>
         </nav>
       </div>
     </header>

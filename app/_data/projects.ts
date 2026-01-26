@@ -39,6 +39,7 @@ export const projects: Project[] = [
     ],
     category: "game",
     video: "tmofhnkKzoM",
+    date: "2025",
   },
   {
     title: "Multiplayer Dungeon Crawler",
@@ -76,6 +77,7 @@ export const projects: Project[] = [
     ],
     category: "game",
     video: "GKxt2N9Is2Q",
+    date: "2024",
   },
   {
     title: "Blaster Game",
@@ -118,6 +120,7 @@ export const projects: Project[] = [
     ],
     category: "game",
     video: "nAwYcq2vvoI",
+    date: "2023",
   },
   {
     title: "Nature Simulation",
@@ -158,6 +161,7 @@ export const projects: Project[] = [
     ],
     category: "game",
     video: "RayA4MKlG-c",
+    date: "2023",
   },
   {
     title: "Dominium",
@@ -200,6 +204,7 @@ export const projects: Project[] = [
     ],
     category: "game",
     video: "FFHdV46PCWA",
+    date: "2023",
   },
   {
     title: "Mortalis",
@@ -327,7 +332,7 @@ export const projects: Project[] = [
       "Database Polling",
     ],
     longDescription:
-      "Built a full-stack forum website where users can post reviews, bug reports, suggestions, and general feedback about a video game. The app supports dynamic routing, category filtering, post deletion, and like functionality. I implemented user login and profiles as an extra feature beyond the assignment brief. The frontend is built with React and React Router, and the backend uses Express with SQL queries to fetch and manage post data. I designed the database schema and seeded it with realistic data, then used .map() and polling logic to render new posts in real time. The UI is responsive and intuitive, with multi-page navigation and a clean post creation flow.",
+      "Built a full-stack forum website where users can post reviews, bug reports, suggestions, and general feedback about a video game. The app supports dynamic routing, category filtering, post deletion, and like functionality. I implemented user login and profiles as an extra feature beyond the assignment brief. The frontend is built with React and React Router, and the backend uses Express with SQL queries to fetch and manage post data. I designed the database schema and seeded it with realistic data, then used .map() and polling logic to render new posts in real time. The UI is responsive and intuitive, with multi-page navigation and a clean post creation flow. This was created in week 8 of my Tech Educators Software Development Bootcamp.",
     features: [
       "Create, read, and delete posts with category tagging",
       "Dynamic routing for individual posts and category views",
@@ -359,5 +364,54 @@ export const projects: Project[] = [
     website: "https://forum-3nwm.onrender.com/",
     server: "https://forum-server-6tz1.onrender.com/",
     github: "https://github.com/Dylan-JM/week07-assignment",
+  },
+  {
+    title: "Event Planner",
+    slug: "event-planner",
+    description:
+      "Full-stack group project for discovering and creating local events to reduce social isolation.",
+    tags: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Express",
+      "PostgreSQL",
+      "Supabase",
+      "Full Stack",
+      "Group Project",
+    ],
+    note: "⚠️ This project uses Supabase on the free tier. The database may be paused or removed at any time.",
+    longDescription:
+      "Event Planner is a full-stack web application built week-long bootcamp assignment in week 5. The app helps users find and create local events — from conventions and sports to social groups and entertainment — with the goal of reducing social isolation and encouraging community connection. I worked as part of a small team to design, build, and deploy the app using HTML, CSS, vanilla JavaScript, Express, and PostgreSQL. We implemented dynamic DOM manipulation, async Fetch calls, and database operations via Supabase. Stretch goals included category filtering, responsive design, and a polished UI. We also documented our planning process with wireframes, Trello boards, and daily stand-ups.",
+    features: [
+      "Browse and create local events across multiple categories",
+      "Responsive design with intuitive navigation",
+      "Dynamic DOM manipulation using vanilla JavaScript",
+      "Express server with multiple endpoints",
+      "PostgreSQL database integration via Supabase",
+      "Category filtering and event creation form",
+      "Group collaboration using Git, Trello, and daily stand-ups",
+      "Presentation and README with architecture overview",
+    ],
+    tech: [
+      "HTML",
+      "CSS",
+      "JavaScript",
+      "Express",
+      "PostgreSQL",
+      "Supabase",
+      "Git",
+      "Trello",
+    ],
+    website: "https://event-planner-12va.onrender.com/",
+    server: "https://event-planner-server-9pnz.onrender.com/",
+    github: "https://github.com/Dylan-JM/week05-assignment",
+    thumbnail: "/projects/event-planner/Event-Planner-Main.png",
+    images: [
+      "/projects/event-planner/Event-Planner-Main.png",
+      "/projects/event-planner/Event-Planner-Find-Events.png",
+      "/projects/event-planner/Event-Planner-Create-Events.png",
+    ],
+    category: "web",
   },
 ];

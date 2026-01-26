@@ -3,6 +3,7 @@ export type Project = {
   slug: string;
   description: string;
   tags: string[];
+  note?: string;
   longDescription: string;
   features: string[];
   tech: string[];
@@ -13,4 +14,5 @@ export type Project = {
   website?: string;
   server?: string;
   github?: string;
+  date?: string;
 };
