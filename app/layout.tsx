@@ -14,11 +14,11 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Dylan Marley — Portfolio",
+  title: "Dylan Marley - Portfolio",
   description:
     "Full-stack and game developer specialising in Web Development with JS and Game Development with Unreal Engine C++.",
   openGraph: {
-    title: "Dylan Marley — Developer Portfolio",
+    title: "Dylan Marley - Developer Portfolio",
     description:
       "Full-stack and game developer specialising in Web Development with JS and Game Development with Unreal Engine C++.",
     url: "https://portfolio-pi-ochre-49.vercel.app/projects",
