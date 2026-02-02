@@ -115,7 +115,7 @@ export const projects: Project[] = [
     thumbnail: "/projects/blaster/Blaster-Main.png",
     images: [
       "/projects/blaster/Blaster-Alt.png",
-      "/projects/blaster/Blaster-Lobby.jpeg",
+      "/projects/blaster/Blaster-Lobby.png",
       "/projects/blaster/Blaster-Game.jpeg",
     ],
     category: "game",
@@ -197,7 +197,7 @@ export const projects: Project[] = [
       "Version Control (GitHub)",
       "Project Management (Jira)",
     ],
-    thumbnail: "/projects/dominium/Dominium-Main.png",
+    thumbnail: "/projects/dominium/Dominium-Main.jpg",
     images: [
       "/projects/dominium/Dominium-Demo.png",
       "/projects/dominium/Dominium-Well.png",
