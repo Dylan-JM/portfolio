@@ -29,7 +29,7 @@ export default function XMBSubContent({ icon, title, description, tech, link, is
   return (
     <div 
       ref={contentRef}
-      className={`absolute top-72 right-8 w-96 max-h-96 overflow-y-auto transition-opacity duration-500 ${
+      className={`absolute top-96 right-1/3 w-96 max-h-96 overflow-y-auto transition-opacity duration-500 ${
         isActive ? 'opacity-100' : 'opacity-0 pointer-events-none'
       }`}
     >
