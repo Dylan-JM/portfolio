@@ -137,8 +137,6 @@ export default function XMBNavigation() {
   };
 
   const selectedCategoryData = projectCategories.find(cat => cat.id === selectedCategory);
-  const selectedSubItemData = selectedSubItem ? 
-    (subCategories[selectedIcon as keyof typeof subCategories] as any[])?.find((item: any) => item.id === selectedSubItem) : null;
 
   return (
     <>
@@ -167,23 +165,11 @@ export default function XMBNavigation() {
       </div>
 
       {/* Content Display - Only Sub-Content */}
-      {selectedIcon === 'home' && selectedSubItem && (
-        <XMBSubContent
-          icon={selectedSubItemData?.icon}
-          title={selectedSubItemData?.label}
-          description={selectedSubItemData?.description}
-          isActive={true}
-        />
-      )}
-
-      {selectedIcon === 'about' && selectedSubItem && (
-        <XMBSubContent
-          icon={selectedSubItemData?.icon}
-          title={selectedSubItemData?.label}
-          description={selectedSubItemData?.description}
-          isActive={true}
-        />
-      )}
+      <XMBSubContent
+        selectedIcon={selectedIcon}
+        selectedSubItem={selectedSubItem}
+        subCategories={subCategories}
+      />
 
       {/* Projects Display */}
       {selectedIcon === 'projects' && (
