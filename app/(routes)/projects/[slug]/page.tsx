@@ -90,7 +90,7 @@ export default async function ProjectPage({
             <h2 className="text-2xl font-semibold text-slate-50 mb-4">
               Features
             </h2>
-            <ul className="list-disc list-inside space-y-2 text-slate-300">
+            <ul className="list-disc pl-6 space-y-2 text-slate-300">
               {project.features.map((feature) => (
                 <li key={feature}>{feature}</li>
               ))}
