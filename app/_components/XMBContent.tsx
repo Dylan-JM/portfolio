@@ -9,9 +9,11 @@ interface XMBContentProps {
   icon: string;
   isActive: boolean;
   children?: React.ReactNode;
+  tech?: string[];
+  link?: string;
 }
 
-export default function XMBContent({ title, description, icon, isActive, children }: XMBContentProps) {
+export default function XMBContent({ title, description, icon, isActive, children, tech, link }: XMBContentProps) {
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -38,15 +40,30 @@ export default function XMBContent({ title, description, icon, isActive, childre
           <h3 className="text-xl font-semibold text-foreground">{title}</h3>
         </div>
         <p className="text-muted-foreground mb-4">{description}</p>
-
+        {tech && tech.length > 0 && (
+          <div className="flex flex-wrap gap-2 mb-4">
+            {tech.map((item, index) => (
+              <span
+                key={index}
+                className="px-2 py-1 bg-blue-500/20 text-blue-500 text-xs rounded-md"
+              >
+                {item}
+              </span>
+            ))}
+          </div>
+        )}
+        {link && (
+          <a
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors"
+          >
+            <span className="mr-2">🔗</span>
+            <span className="text-sm">View Project</span>
+          </a>
+        )}
       </div>
-      
-      {/* Sub-content positioned to the right */}
-      {children && (
-        <div className="absolute top-0 left-1/2 ml-8 pl-8 border-l border-border/30 max-w-md">
-          {children}
-        </div>
-      )}
     </div>
   );
 }
