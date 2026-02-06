@@ -94,12 +94,6 @@ export default function XMBNavigation() {
     setSelectedSubItem(subItemId);
   };
 
-  const handleCategoryClick = (categoryId: string) => {
-    playNavSound();
-    setSelectedCategory(categoryId);
-    setSelectedProject(null);
-  };
-
   const handleKeyDown = (e: React.KeyboardEvent) => {
     const icons = ['home', 'about', 'projects'];
     const currentIndex = icons.indexOf(selectedIcon);
@@ -135,9 +129,6 @@ export default function XMBNavigation() {
         break;
     }
   };
-
-  const selectedCategoryData = projectCategories.find(cat => cat.id === selectedCategory);
-
   return (
     <>
       {/* Hidden Audio Element */}
@@ -170,79 +161,6 @@ export default function XMBNavigation() {
         selectedSubItem={selectedSubItem}
         subCategories={subCategories}
       />
-
-      {/* Projects Display */}
-      {selectedIcon === 'projects' && (
-        <>
-          {/* Projects Display - Right Side */}
-          {selectedCategory && selectedCategoryData && (
-            <div className="absolute right-8 top-1/2 transform -translate-y-1/2 w-96 max-h-96 overflow-y-auto">
-              <h3 className="text-xl font-semibold text-pink-500 mb-4">
-                {selectedCategoryData.label}
-              </h3>
-              <div className="space-y-4">
-                {selectedCategoryData.projects.map((project, index) => (
-                  <div
-                    key={project.slug}
-                    ref={(el) => {
-                      projectRefs.current[index] = el;
-                    }}
-                    className={`bg-card/30 backdrop-blur-sm border border-border rounded-xl p-4 cursor-pointer transition-all duration-300 ${
-                      selectedProject === project.slug
-                        ? 'ring-2 ring-pink-500 scale-105'
-                        : 'hover:scale-102'
-                    }`}
-                    onClick={() => setSelectedProject(project.slug)}
-                  >
-                    <div className="flex justify-between items-start">
-                      <div className="flex-1">
-                        <h4 className="text-lg font-semibold text-foreground mb-2">
-                          {project.title}
-                        </h4>
-                        <p className="text-muted-foreground text-sm mb-3">
-                          {project.description}
-                        </p>
-                        <div className="flex flex-wrap gap-2 mb-3">
-                          {project.tech.slice(0, 3).map((tech, techIndex) => (
-                            <span
-                              key={techIndex}
-                              className="px-2 py-1 bg-pink-500/20 text-pink-500 text-xs rounded-md"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                          {project.tech.length > 3 && (
-                            <span className="px-2 py-1 bg-pink-500/20 text-pink-500 text-xs rounded-md">
-                              +{project.tech.length - 3}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                      {project.website && (
-                        <div className="flex items-center gap-2 text-xs text-blue-400 hover:text-blue-300">
-                          <span>🔗</span>
-                          <span>Live Demo</span>
-                        </div>
-                      )}
-                      {project.thumbnail && (
-                        <div className="ml-4">
-                          <Image
-                            src={project.thumbnail} 
-                            alt={project.title}
-                            className="w-16 h-16 rounded-lg object-cover"
-                            width={64}
-                            height={64}
-                          />
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-        </>
-      )}
     </>
   );
 }
