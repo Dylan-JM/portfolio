@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import XMBMainCategory from './XMBMainCategory';
 
 interface XMBMainNavigationProps {
   selectedIcon: string;
@@ -41,58 +42,49 @@ export default function XMBMainNavigation({
       {/* Main Navigation - XMB Style */}
       <div className="grid grid-cols-3 gap-20 justify-center items-center" style={{ marginTop: '14%', width: 'fit-content', margin: '14% auto 0' }}>
         {/* Home Icon */}
-        <div
+        <XMBMainCategory
           ref={(el) => {
             iconRefs.current[0] = el;
           }}
-          className={`relative cursor-pointer transition-all duration-300 ${
-            selectedIcon === 'home' 
-              ? 'scale-125 text-blue-500' 
-              : 'scale-100 text-foreground hover:text-blue-500/70'
-          }`}
+          icon="🏠"
+          label="Home"
+          isSelected={selectedIcon === 'home'}
+          color={{
+            selected: 'text-blue-500',
+            hover: 'text-blue-500/70'
+          }}
           onClick={() => onIconClick('home')}
-        >
-          <div className="flex flex-col items-center">
-            <span className="text-6xl">🏠</span>
-            <span className="text-sm mt-2">Home</span>
-          </div>
-        </div>
+        />
 
         {/* About Icon */}
-        <div
+        <XMBMainCategory
           ref={(el) => {
             iconRefs.current[1] = el;
           }}
-          className={`relative cursor-pointer transition-all duration-300 ${
-            selectedIcon === 'about' 
-              ? 'scale-125 text-purple-600' 
-              : 'scale-100 text-foreground hover:text-purple-600/70'
-          }`}
+          icon="👤"
+          label="About"
+          isSelected={selectedIcon === 'about'}
+          color={{
+            selected: 'text-purple-600',
+            hover: 'text-purple-600/70'
+          }}
           onClick={() => onIconClick('about')}
-        >
-          <div className="flex flex-col items-center">
-            <span className="text-6xl">👤</span>
-            <span className="text-sm mt-2">About</span>
-          </div>
-        </div>
+        />
 
         {/* Projects Icon */}
-        <div
+        <XMBMainCategory
           ref={(el) => {
             iconRefs.current[2] = el;
           }}
-          className={`relative cursor-pointer transition-all duration-300 ${
-            selectedIcon === 'projects' 
-              ? 'scale-125 text-pink-500' 
-              : 'scale-100 text-foreground hover:text-pink-500/70'
-          }`}
+          icon="💼"
+          label="Projects"
+          isSelected={selectedIcon === 'projects'}
+          color={{
+            selected: 'text-pink-500',
+            hover: 'text-pink-500/70'
+          }}
           onClick={() => onIconClick('projects')}
-        >
-          <div className="flex flex-col items-center">
-            <span className="text-6xl">💼</span>
-            <span className="text-sm mt-2">Projects</span>
-          </div>
-        </div>
+        />
       </div>
 
       {/* Sub-Navigation - Below Related Icon */}
