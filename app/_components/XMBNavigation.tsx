@@ -7,6 +7,7 @@ import { projects } from '@/app/_data/projects';
 import XMBContent from './XMBContent';
 import XMBSubContent from './XMBSubContent';
 import XMBSystemInfo from './XMBSystemInfo';
+import Image from 'next/image';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -19,6 +20,17 @@ export default function XMBNavigation() {
   const iconRefs = useRef<(HTMLDivElement | null)[]>([]);
   const categoryRefs = useRef<(HTMLDivElement | null)[]>([]);
   const projectRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const audioRef = useRef<HTMLAudioElement>(null);
+
+  // Play navigation sound
+  const playNavSound = () => {
+    if (audioRef.current) {
+      audioRef.current.currentTime = 0; // Reset to start
+      audioRef.current.play().catch(error => {
+        console.log('Audio play failed:', error);
+      });
+    }
+  };
 
   // Sub-categories for each main icon
   const subCategories = {
@@ -88,6 +100,7 @@ export default function XMBNavigation() {
   }, [selectedIcon, selectedCategory]);
 
   const handleIconClick = (iconId: string) => {
+    playNavSound();
     setSelectedIcon(iconId);
     setSelectedCategory(null);
     setSelectedProject(null);
@@ -95,10 +108,12 @@ export default function XMBNavigation() {
   };
 
   const handleSubItemClick = (subItemId: string) => {
+    playNavSound();
     setSelectedSubItem(subItemId);
   };
 
   const handleCategoryClick = (categoryId: string) => {
+    playNavSound();
     setSelectedCategory(categoryId);
     setSelectedProject(null);
   };
@@ -145,6 +160,13 @@ export default function XMBNavigation() {
 
   return (
     <>
+      {/* Hidden Audio Element */}
+      <audio
+        ref={audioRef}
+        src="/audio/nav.mp3"
+        preload="auto"
+      />
+      
       <XMBSystemInfo />
       
       <div 
@@ -154,7 +176,7 @@ export default function XMBNavigation() {
         tabIndex={0}
       >
         {/* Main Navigation - XMB Style */}
-        <div className="flex justify-center items-center" style={{ marginTop: '14%' }}>
+        <div className="grid grid-cols-3 gap-20 justify-center items-center" style={{ marginTop: '14%', width: 'fit-content', margin: '14% auto 0' }}>
           {/* Home Icon */}
           <div
             ref={(el) => {
@@ -178,7 +200,7 @@ export default function XMBNavigation() {
             ref={(el) => {
               iconRefs.current[1] = el;
             }}
-            className={`relative cursor-pointer transition-all duration-300 ml-20 ${
+            className={`relative cursor-pointer transition-all duration-300 ${
               selectedIcon === 'about' 
                 ? 'scale-125 text-purple-600' 
                 : 'scale-100 text-foreground hover:text-purple-600/70'
@@ -196,7 +218,7 @@ export default function XMBNavigation() {
             ref={(el) => {
               iconRefs.current[2] = el;
             }}
-            className={`relative cursor-pointer transition-all duration-300 ml-20 ${
+            className={`relative cursor-pointer transition-all duration-300 ${
               selectedIcon === 'projects' 
                 ? 'scale-125 text-pink-500' 
                 : 'scale-100 text-foreground hover:text-pink-500/70'
@@ -210,11 +232,12 @@ export default function XMBNavigation() {
           </div>
         </div>
 
-        {/* Sub-Navigation - Below Icons */}
+        {/* Sub-Navigation - Below Related Icon */}
         {selectedIcon && (
-          <div className="flex justify-center items-start mt-8">
+          <div className="grid grid-cols-3 gap-20 justify-center items-start" style={{ width: 'fit-content', margin: '2rem auto 0' }}>
+            {/* Home Column */}
             <div className="flex flex-col space-y-4">
-              {subCategories[selectedIcon as keyof typeof subCategories].map((subItem, index) => (
+              {selectedIcon === 'home' && subCategories.home.map((subItem, index) => (
                 <div
                   key={subItem.id}
                   ref={(el) => {
@@ -237,26 +260,80 @@ export default function XMBNavigation() {
                 </div>
               ))}
             </div>
+            
+            {/* About Column */}
+            <div className="flex flex-col space-y-4">
+              {selectedIcon === 'about' && subCategories.about.map((subItem, index) => (
+                <div
+                  key={subItem.id}
+                  ref={(el) => {
+                    categoryRefs.current[index] = el;
+                  }}
+                  className={`relative cursor-pointer transition-all duration-300 ${
+                    selectedSubItem === subItem.id
+                      ? 'scale-110 text-purple-600'
+                      : 'scale-100 text-foreground hover:text-purple-600/70'
+                  }`}
+                  onClick={() => handleSubItemClick(subItem.id)}
+                >
+                  <div className="flex flex-col items-center">
+                    <span className="text-3xl">{subItem.icon}</span>
+                    <span className="text-xs mt-1">{subItem.label}</span>
+                  </div>
+                  {selectedSubItem === subItem.id && (
+                    <div className="absolute -bottom-2 left-0 right-0 h-0.5 bg-purple-600 rounded-full" />
+                  )}
+                </div>
+              ))}
+            </div>
+            
+            {/* Projects Column */}
+            <div className="flex flex-col space-y-4">
+              {selectedIcon === 'projects' && subCategories.projects.map((subItem, index) => (
+                <div
+                  key={subItem.id}
+                  ref={(el) => {
+                    categoryRefs.current[index] = el;
+                  }}
+                  className={`relative cursor-pointer transition-all duration-300 ${
+                    selectedSubItem === subItem.id
+                      ? 'scale-110 text-pink-500'
+                      : 'scale-100 text-foreground hover:text-pink-500/70'
+                  }`}
+                  onClick={() => handleSubItemClick(subItem.id)}
+                >
+                  <div className="flex flex-col items-center">
+                    <span className="text-3xl">{subItem.icon}</span>
+                    <span className="text-xs mt-1">{subItem.label}</span>
+                  </div>
+                  {selectedSubItem === subItem.id && (
+                    <div className="absolute -bottom-2 left-0 right-0 h-0.5 bg-pink-500 rounded-full" />
+                  )}
+                </div>
+              ))}
+            </div>
           </div>
         )}
       </div>
 
       {/* Content Display */}
-      <XMBContent
-        title="Dylan Marley"
-        description="Full Stack Developer & Game Developer"
-        icon="🏠"
-        isActive={selectedIcon === 'home' && !selectedSubItem}
-      >
-        {selectedSubItemData && (
-          <XMBSubContent
-            icon={selectedSubItemData.icon}
-            title={selectedSubItemData.label}
-            description={selectedSubItemData.description}
-            isActive={!!selectedSubItemData}
-          />
-        )}
-      </XMBContent>
+      {selectedIcon === 'home' && !selectedSubItem && (
+        <XMBContent
+          title="Dylan Marley"
+          description="Full Stack Developer & Game Developer"
+          icon="🏠"
+          isActive={true}
+        />
+      )}
+      
+      {selectedIcon === 'home' && selectedSubItem && (
+        <XMBSubContent
+          icon={selectedSubItemData.icon}
+          title={selectedSubItemData.label}
+          description={selectedSubItemData.description}
+          isActive={true}
+        />
+      )}
 
       <XMBContent
         title="About Me"
@@ -277,32 +354,6 @@ export default function XMBNavigation() {
       {/* Projects Display */}
       {selectedIcon === 'projects' && (
         <>
-          {/* Project Categories - Left Side */}
-          <div className="absolute left-8 top-1/2 transform -translate-y-1/2 space-y-6">
-            {projectCategories.map((category, index) => (
-              <div
-                key={category.id}
-                ref={(el) => {
-                  categoryRefs.current[index] = el;
-                }}
-                className={`relative cursor-pointer transition-all duration-300 ${
-                  selectedCategory === category.id
-                    ? 'scale-110 text-pink-500'
-                    : 'text-foreground hover:text-pink-500/70'
-                }`}
-                onClick={() => handleCategoryClick(category.id)}
-              >
-                <div className="flex items-center space-x-3">
-                  <span className="text-2xl">{category.icon}</span>
-                  <span className="font-medium">{category.label}</span>
-                  <span className="text-xs text-muted-foreground">({category.projects.length})</span>
-                </div>
-                {selectedCategory === category.id && (
-                  <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-pink-500 rounded-full -ml-4" />
-                )}
-              </div>
-            ))}
-          </div>
 
           {/* Projects Display - Right Side */}
           {selectedCategory && selectedCategoryData && (
@@ -356,10 +407,12 @@ export default function XMBNavigation() {
                       </div>
                       {project.thumbnail && (
                         <div className="ml-4">
-                          <img 
+                          <Image
                             src={project.thumbnail} 
                             alt={project.title}
                             className="w-16 h-16 rounded-lg object-cover"
+                            width={64}
+                            height={64}
                           />
                         </div>
                       )}

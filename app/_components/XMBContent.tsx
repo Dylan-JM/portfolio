@@ -26,15 +26,27 @@ export default function XMBContent({ title, description, icon, isActive, childre
   if (!isActive) return null;
 
   return (
-    <div ref={contentRef} className="absolute top-72 left-1/2 transform -translate-x-1/2 text-center max-w-4xl">
-      <div className="flex items-center justify-center mb-6">
-        <span className="text-6xl mr-4">{icon}</span>
-        <h1 className="text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-500 via-purple-600 to-pink-500">
-          {title}
-        </h1>
+    <div 
+      ref={contentRef}
+      className={`absolute top-72 right-8 w-96 max-h-96 overflow-y-auto transition-opacity duration-500 ${
+        isActive ? 'opacity-100' : 'opacity-0 pointer-events-none'
+      }`}
+    >
+      <div className="bg-card/30 backdrop-blur-sm border border-border rounded-xl p-6">
+        <div className="flex items-center mb-6">
+          <span className="text-4xl mr-3">{icon}</span>
+          <h3 className="text-xl font-semibold text-foreground">{title}</h3>
+        </div>
+        <p className="text-muted-foreground mb-4">{description}</p>
+
       </div>
-      <p className="text-xl text-muted-foreground mb-8">{description}</p>
-      {children}
+      
+      {/* Sub-content positioned to the right */}
+      {children && (
+        <div className="absolute top-0 left-1/2 ml-8 pl-8 border-l border-border/30 max-w-md">
+          {children}
+        </div>
+      )}
     </div>
   );
 }
