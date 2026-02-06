@@ -4,9 +4,9 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { projects } from '@/app/_data/projects';
-import XMBContent from './XMBContent';
 import XMBSubContent from './XMBSubContent';
 import XMBSystemInfo from './XMBSystemInfo';
+import XMBMainNavigation from './XMBMainNavigation';
 import Image from 'next/image';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -17,8 +17,6 @@ export default function XMBNavigation() {
   const [selectedProject, setSelectedProject] = useState<string | null>(null);
   const [selectedSubItem, setSelectedSubItem] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const iconRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const categoryRefs = useRef<(HTMLDivElement | null)[]>([]);
   const projectRefs = useRef<(HTMLDivElement | null)[]>([]);
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -35,7 +33,7 @@ export default function XMBNavigation() {
   // Sub-categories for each main icon
   const subCategories = {
     home: [
-      { id: 'profile', label: 'Profile', icon: '👤', description: 'Full-stack developer with expertise in modern web technologies' },
+      { id: 'about', label: 'About', icon: '👤', description: 'Full-stack developer with expertise in modern web technologies' },
       { id: 'skills', label: 'Skills', icon: '⚡', description: 'JavaScript, TypeScript, React, Next.js, Node.js, Python, C++' },
       { id: 'experience', label: 'Experience', icon: '💼', description: '5+ years building production applications and games' },
       { id: 'contact', label: 'Contact', icon: '📧', description: 'Available for freelance projects and collaborations' }
@@ -75,36 +73,20 @@ export default function XMBNavigation() {
     }
   ];
 
-  useEffect(() => {
-    // Animate icons on mount
-    gsap.fromTo(iconRefs.current,
-      { opacity: 0, scale: 0.8 },
-      { opacity: 1, scale: 1, duration: 0.5, stagger: 0.1, ease: "power2.out" }
-    );
-
-    // Animate sub-items when main icon is selected
-    if (selectedIcon && subCategories[selectedIcon as keyof typeof subCategories]) {
-      gsap.fromTo(categoryRefs.current,
-        { opacity: 0, y: -20 },
-        { opacity: 1, y: 0, duration: 0.4, stagger: 0.1, ease: "power2.out" }
-      );
-    }
-
-    // Animate projects when category is selected
-    if (selectedCategory && projectCategories.find(cat => cat.id === selectedCategory)) {
-      gsap.fromTo(projectRefs.current,
-        { opacity: 0, x: 30 },
-        { opacity: 1, x: 0, duration: 0.4, stagger: 0.1, ease: "power2.out" }
-      );
-    }
-  }, [selectedIcon, selectedCategory]);
-
   const handleIconClick = (iconId: string) => {
     playNavSound();
     setSelectedIcon(iconId);
     setSelectedCategory(null);
     setSelectedProject(null);
-    setSelectedSubItem(null);
+    
+    // Auto-select first sub-category for each main category
+    if (iconId === 'home') {
+      setSelectedSubItem('about'); // First sub-category
+    } else if (iconId === 'about') {
+      setSelectedSubItem('background'); // First sub-category
+    } else if (iconId === 'projects') {
+      setSelectedSubItem('startup'); // First sub-category
+    }
   };
 
   const handleSubItemClick = (subItemId: string) => {
@@ -139,7 +121,7 @@ export default function XMBNavigation() {
         e.preventDefault();
         if (selectedIcon && subCategories[selectedIcon as keyof typeof subCategories]) {
           const subItems = subCategories[selectedIcon as keyof typeof subCategories];
-          const currentSubIndex = selectedSubItem ? subItems.findIndex(item => item.id === selectedSubItem) : -1;
+          const currentSubIndex = selectedSubItem ? subItems.findIndex((item: any) => item.id === selectedSubItem) : -1;
           if (currentSubIndex < subItems.length - 1) {
             handleSubItemClick(subItems[currentSubIndex + 1].id);
           }
@@ -156,7 +138,7 @@ export default function XMBNavigation() {
 
   const selectedCategoryData = projectCategories.find(cat => cat.id === selectedCategory);
   const selectedSubItemData = selectedSubItem ? 
-    subCategories[selectedIcon as keyof typeof subCategories]?.find(item => item.id === selectedSubItem) : null;
+    (subCategories[selectedIcon as keyof typeof subCategories] as any[])?.find((item: any) => item.id === selectedSubItem) : null;
 
   return (
     <>
@@ -175,186 +157,37 @@ export default function XMBNavigation() {
         onKeyDown={handleKeyDown}
         tabIndex={0}
       >
-        {/* Main Navigation - XMB Style */}
-        <div className="grid grid-cols-3 gap-20 justify-center items-center" style={{ marginTop: '14%', width: 'fit-content', margin: '14% auto 0' }}>
-          {/* Home Icon */}
-          <div
-            ref={(el) => {
-              iconRefs.current[0] = el;
-            }}
-            className={`relative cursor-pointer transition-all duration-300 ${
-              selectedIcon === 'home' 
-                ? 'scale-125 text-blue-500' 
-                : 'scale-100 text-foreground hover:text-blue-500/70'
-            }`}
-            onClick={() => handleIconClick('home')}
-          >
-            <div className="flex flex-col items-center">
-              <span className="text-6xl">🏠</span>
-              <span className="text-sm mt-2">Home</span>
-            </div>
-          </div>
-
-          {/* About Icon */}
-          <div
-            ref={(el) => {
-              iconRefs.current[1] = el;
-            }}
-            className={`relative cursor-pointer transition-all duration-300 ${
-              selectedIcon === 'about' 
-                ? 'scale-125 text-purple-600' 
-                : 'scale-100 text-foreground hover:text-purple-600/70'
-            }`}
-            onClick={() => handleIconClick('about')}
-          >
-            <div className="flex flex-col items-center">
-              <span className="text-6xl">👤</span>
-              <span className="text-sm mt-2">About</span>
-            </div>
-          </div>
-
-          {/* Projects Icon */}
-          <div
-            ref={(el) => {
-              iconRefs.current[2] = el;
-            }}
-            className={`relative cursor-pointer transition-all duration-300 ${
-              selectedIcon === 'projects' 
-                ? 'scale-125 text-pink-500' 
-                : 'scale-100 text-foreground hover:text-pink-500/70'
-            }`}
-            onClick={() => handleIconClick('projects')}
-          >
-            <div className="flex flex-col items-center">
-              <span className="text-6xl">💼</span>
-              <span className="text-sm mt-2">Projects</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Sub-Navigation - Below Related Icon */}
-        {selectedIcon && (
-          <div className="grid grid-cols-3 gap-20 justify-center items-start" style={{ width: 'fit-content', margin: '2rem auto 0' }}>
-            {/* Home Column */}
-            <div className="flex flex-col space-y-4">
-              {selectedIcon === 'home' && subCategories.home.map((subItem, index) => (
-                <div
-                  key={subItem.id}
-                  ref={(el) => {
-                    categoryRefs.current[index] = el;
-                  }}
-                  className={`relative cursor-pointer transition-all duration-300 ${
-                    selectedSubItem === subItem.id
-                      ? 'scale-110 text-blue-500'
-                      : 'scale-100 text-foreground hover:text-blue-500/70'
-                  }`}
-                  onClick={() => handleSubItemClick(subItem.id)}
-                >
-                  <div className="flex flex-col items-center">
-                    <span className="text-3xl">{subItem.icon}</span>
-                    <span className="text-xs mt-1">{subItem.label}</span>
-                  </div>
-                  {selectedSubItem === subItem.id && (
-                    <div className="absolute -bottom-2 left-0 right-0 h-0.5 bg-blue-500 rounded-full" />
-                  )}
-                </div>
-              ))}
-            </div>
-            
-            {/* About Column */}
-            <div className="flex flex-col space-y-4">
-              {selectedIcon === 'about' && subCategories.about.map((subItem, index) => (
-                <div
-                  key={subItem.id}
-                  ref={(el) => {
-                    categoryRefs.current[index] = el;
-                  }}
-                  className={`relative cursor-pointer transition-all duration-300 ${
-                    selectedSubItem === subItem.id
-                      ? 'scale-110 text-purple-600'
-                      : 'scale-100 text-foreground hover:text-purple-600/70'
-                  }`}
-                  onClick={() => handleSubItemClick(subItem.id)}
-                >
-                  <div className="flex flex-col items-center">
-                    <span className="text-3xl">{subItem.icon}</span>
-                    <span className="text-xs mt-1">{subItem.label}</span>
-                  </div>
-                  {selectedSubItem === subItem.id && (
-                    <div className="absolute -bottom-2 left-0 right-0 h-0.5 bg-purple-600 rounded-full" />
-                  )}
-                </div>
-              ))}
-            </div>
-            
-            {/* Projects Column */}
-            <div className="flex flex-col space-y-4">
-              {selectedIcon === 'projects' && subCategories.projects.map((subItem, index) => (
-                <div
-                  key={subItem.id}
-                  ref={(el) => {
-                    categoryRefs.current[index] = el;
-                  }}
-                  className={`relative cursor-pointer transition-all duration-300 ${
-                    selectedSubItem === subItem.id
-                      ? 'scale-110 text-pink-500'
-                      : 'scale-100 text-foreground hover:text-pink-500/70'
-                  }`}
-                  onClick={() => handleSubItemClick(subItem.id)}
-                >
-                  <div className="flex flex-col items-center">
-                    <span className="text-3xl">{subItem.icon}</span>
-                    <span className="text-xs mt-1">{subItem.label}</span>
-                  </div>
-                  {selectedSubItem === subItem.id && (
-                    <div className="absolute -bottom-2 left-0 right-0 h-0.5 bg-pink-500 rounded-full" />
-                  )}
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+        <XMBMainNavigation
+          selectedIcon={selectedIcon}
+          selectedSubItem={selectedSubItem}
+          subCategories={subCategories}
+          onIconClick={handleIconClick}
+          onSubItemClick={handleSubItemClick}
+        />
       </div>
 
-      {/* Content Display */}
-      {selectedIcon === 'home' && !selectedSubItem && (
-        <XMBContent
-          title="Dylan Marley"
-          description="Full Stack Developer & Game Developer"
-          icon="🏠"
-          isActive={true}
-        />
-      )}
-      
+      {/* Content Display - Only Sub-Content */}
       {selectedIcon === 'home' && selectedSubItem && (
         <XMBSubContent
-          icon={selectedSubItemData.icon}
-          title={selectedSubItemData.label}
-          description={selectedSubItemData.description}
+          icon={selectedSubItemData?.icon}
+          title={selectedSubItemData?.label}
+          description={selectedSubItemData?.description}
           isActive={true}
         />
       )}
 
-      <XMBContent
-        title="About Me"
-        description="Developer specializing in Web Development, Game Development, and innovative solutions"
-        icon="👤"
-        isActive={selectedIcon === 'about' && !selectedSubItem}
-      >
-        {selectedSubItemData && (
-          <XMBSubContent
-            icon={selectedSubItemData.icon}
-            title={selectedSubItemData.label}
-            description={selectedSubItemData.description}
-            isActive={!!selectedSubItemData}
-          />
-        )}
-      </XMBContent>
+      {selectedIcon === 'about' && selectedSubItem && (
+        <XMBSubContent
+          icon={selectedSubItemData?.icon}
+          title={selectedSubItemData?.label}
+          description={selectedSubItemData?.description}
+          isActive={true}
+        />
+      )}
 
       {/* Projects Display */}
       {selectedIcon === 'projects' && (
         <>
-
           {/* Projects Display - Right Side */}
           {selectedCategory && selectedCategoryData && (
             <div className="absolute right-8 top-1/2 transform -translate-y-1/2 w-96 max-h-96 overflow-y-auto">
@@ -398,13 +231,13 @@ export default function XMBNavigation() {
                             </span>
                           )}
                         </div>
-                        {project.website && (
-                          <div className="flex items-center gap-2 text-xs text-blue-400 hover:text-blue-300">
-                            <span>🔗</span>
-                            <span>Live Demo</span>
-                          </div>
-                        )}
                       </div>
+                      {project.website && (
+                        <div className="flex items-center gap-2 text-xs text-blue-400 hover:text-blue-300">
+                          <span>🔗</span>
+                          <span>Live Demo</span>
+                        </div>
+                      )}
                       {project.thumbnail && (
                         <div className="ml-4">
                           <Image
