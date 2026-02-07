@@ -35,8 +35,11 @@ export default function XMBNavigation() {
     home: [
       { id: 'about', label: 'About', icon: '👤', description: 'Full-stack developer with expertise in modern web technologies' },
       { id: 'skills', label: 'Skills', icon: '⚡', description: 'JavaScript, TypeScript, React, Next.js, Node.js, Python, C++' },
-      { id: 'experience', label: 'Experience', icon: '💼', description: '5+ years building production applications and games' },
-      { id: 'contact', label: 'Contact', icon: '📧', description: 'Available for freelance projects and collaborations' }
+      { id: 'what-i-do', label: 'What I Do', icon: '🎯', description: 'Gameplay programming, backend development, and systems design' },
+      { id: 'technical-focus', label: 'Technical Focus', icon: '�', description: 'Unreal Engine 5, multiplayer systems, full stack development' },
+      { id: 'background', label: 'Background', icon: '📚', description: 'BSc Computer Games Technology and Software Development Bootcamp' },
+      { id: 'how-i-work', label: 'How I Work', icon: '⚙️', description: 'Detail-oriented, focused on robust and scalable systems' },
+      { id: 'outside-of-work', label: 'Outside of Work', icon: '🎮', description: 'Experimenting with new tools and learning new technologies' }
     ],
     about: [
       { id: 'background', label: 'Background', icon: '📚', description: 'Self-taught developer passionate about creating innovative solutions' },

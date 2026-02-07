@@ -62,18 +62,53 @@ export default function XMBSubCategoryContent({ selectedIcon, selectedSubItem }:
                 </div>
               </div>
             );
-          case 'experience':
+          case 'what-i-do':
             return (
               <div className="space-y-4">
-                <h3 className="text-2xl font-bold text-foreground">Experience</h3>
-                <p className="text-muted-foreground">5+ years building production applications and games</p>
+                <h3 className="text-2xl font-bold text-foreground">What I Do</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  My work spans gameplay programming, backend development, and systems design. I build clean, maintainable codebases and focus on delivering features that scale — whether that&apos;s multiplayer combat systems, AI frameworks, or full stack web applications. I&apos;ve worked across multiple startups, often taking ownership of architecture, code quality, and mentoring other developers.
+                </p>
               </div>
             );
-          case 'contact':
+          case 'technical-focus':
             return (
               <div className="space-y-4">
-                <h3 className="text-2xl font-bold text-foreground">Contact</h3>
-                <p className="text-muted-foreground">Available for freelance projects and collaborations</p>
+                <h3 className="text-2xl font-bold text-foreground">Technical Focus</h3>
+                <ul className="list-disc list-inside space-y-2 text-muted-foreground">
+                  <li>Unreal Engine 5 — C++, AI, Mass framework, gameplay systems</li>
+                  <li>Multiplayer systems, replication, and cloud-backed services</li>
+                  <li>React, Next.js, Express, REST APIs, full stack web development</li>
+                  <li>SQL (MySQL, PostgreSQL) and AWS (DynamoDB, Cognito)</li>
+                  <li>Scalable architecture, debugging, and performance-focused development</li>
+                </ul>
+              </div>
+            );
+          case 'background':
+            return (
+              <div className="space-y-4">
+                <h3 className="text-2xl font-bold text-foreground">Background</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  I hold a BSc (Hons) in Computer Games Technology and I have completed a Software Development Bootcamp with Tech Educators. My experience includes leading development on an MMORPG and Looter Arena game, implementing AI and gameplay systems in Unreal Engine, and delivering full stack features for web platforms.
+                </p>
+              </div>
+            );
+          case 'how-i-work':
+            return (
+              <div className="space-y-4">
+                <h3 className="text-2xl font-bold text-foreground">How I Work</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  I&apos;m detail‑oriented, direct, and focused on building systems that are robust, scalable, and easy to maintain. I avoid unnecessary complexity, keep logic modular, and iterate until everything feels solid. I&apos;m comfortable taking ownership of features, mentoring teammates, and driving projects forward.
+                </p>
+              </div>
+            );
+          case 'outside-of-work':
+            return (
+              <div className="space-y-4">
+                <h3 className="text-2xl font-bold text-foreground">Outside of Work</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  Outside of development, I&apos;m usually experimenting with new tools, refining gameplay prototypes, or learning new technologies that push my projects and skillset forward.
+                </p>
               </div>
             );
           default:
