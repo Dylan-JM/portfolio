@@ -12,8 +12,8 @@ import { subCategories } from '@/app/_data/categories';
 gsap.registerPlugin(ScrollTrigger);
 
 export default function XMBNavigation() {
-  const [selectedIcon, setSelectedIcon] = useState('home');
-  const [selectedSubItem, setSelectedSubItem] = useState<string | null>(null);
+  const [selectedIcon, setSelectedIcon] = useState('projects');
+  const [selectedSubItem, setSelectedSubItem] = useState<string | null>('startup');
   const containerRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
 
