@@ -32,7 +32,7 @@ export default function XMBMainNavigation({
   return (
     <>
       {/* Main Navigation - XMB Style */}
-      <div className="grid grid-cols-3 gap-20 justify-center items-center" style={{ marginTop: '14%', width: 'fit-content', margin: '14% auto 0' }}>
+      <div className="grid grid-cols-3 gap-20 justify-start items-center" style={{ marginTop: '14%', width: 'fit-content', margin: '14% 0 0 5%' }}>
         {/* Home Icon */}
         <XMBMainCategory
           ref={(el) => {
