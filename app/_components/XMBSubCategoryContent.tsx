@@ -122,9 +122,7 @@ export default function XMBSubCategoryContent({ selectedIcon, selectedSubItem, c
             <p className="text-muted-foreground">Select a project category to view details</p>
           </div>
         );
-      default:
-        return null;
-        case 'contact':
+      case 'contact':
         switch (selectedSubItem) {
           case 'background':
             return (
@@ -133,10 +131,11 @@ export default function XMBSubCategoryContent({ selectedIcon, selectedSubItem, c
                 <p className="text-muted-foreground">Self-taught developer passionate about creating innovative solutions</p>
               </div>
             );
-
           default:
             return null;
         }
+      default:
+        return null;
     }
     
   };
@@ -146,7 +145,7 @@ export default function XMBSubCategoryContent({ selectedIcon, selectedSubItem, c
   return (
     <div 
       ref={contentRef}
-      className={`absolute w-[600px] max-h-96 overflow-y-auto transition-opacity duration-500 opacity-100 top-96 ${contentOffset}`}
+      className={`absolute w-[600px] max-h-96 overflow-y-auto transition-opacity duration-500 opacity-100 top-96 ${contentOffset} ${selectedIcon === 'contact' ? 'ml-[10px]' : ''}`}
     >
       <div className="bg-card/30 backdrop-blur-sm border border-border rounded-xl p-6">
         {renderContent()}

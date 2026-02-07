@@ -34,10 +34,10 @@ export default function XMBNavigation() {
     // Auto-select first sub-category for each main category
     if (iconId === 'home') {
       setSelectedSubItem('about'); // First sub-category
-    } else if (iconId === 'about') {
-      setSelectedSubItem('background'); // First sub-category
     } else if (iconId === 'projects') {
       setSelectedSubItem('startup'); // First sub-category
+    } else if (iconId === 'contact') {
+      setSelectedSubItem('background'); // First sub-category
     }
   };
 
@@ -47,7 +47,7 @@ export default function XMBNavigation() {
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
-    const icons = ['home', 'about', 'projects'];
+    const icons = ['home', 'projects', 'contact'];
     const currentIndex = icons.indexOf(selectedIcon);
     
     switch (e.key) {
@@ -113,8 +113,8 @@ export default function XMBNavigation() {
         selectedSubItem={selectedSubItem}
         contentOffset={
           selectedIcon === 'home' ? 'right-1/4' :
-          selectedIcon === 'about' ? 'right-1/3' :
           selectedIcon === 'projects' ? 'right-1/6' :
+          selectedIcon === 'contact' ? 'left-[62%]' :
           'right-1/4'
         }
       />
