@@ -17,10 +17,9 @@ import { projects } from '@/app/_data/projects';
       { id: 'games', label: 'Game Projects', icon: '🎮', description: 'Interactive games and game development tools' }
     ],
     contact: [
-      { id: 'background', label: 'Background', icon: '📚', description: 'Self-taught developer passionate about creating innovative solutions' },
-      { id: 'education', label: 'Education', icon: '🎓', description: 'Continuous learning through online courses and hands-on projects' },
-      { id: 'interests', label: 'Interests', icon: '🎯', description: 'Game development, AI/ML, system architecture, user experience' },
-      { id: 'goals', label: 'Goals', icon: '🚀', description: 'Build scalable applications and contribute to open-source projects' }
+      { id: 'email', label: 'Email', icon: '�', description: 'dylan.james.marley@gmail.com' },
+      { id: 'github', label: 'GitHub', icon: '🐙', description: 'github.com/Dylan-JM' },
+      { id: 'linkedin', label: 'LinkedIn', icon: '💼', description: 'linkedin.com/in/dylan-marley-a439bb1b8' }
     ],
   };
 

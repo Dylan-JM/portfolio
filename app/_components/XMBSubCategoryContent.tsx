@@ -150,11 +150,77 @@ export default function XMBSubCategoryContent({ selectedIcon, selectedSubItem, c
         );
       case 'contact':
         switch (selectedSubItem) {
-          case 'background':
+          case 'email':
             return (
               <div className="space-y-4">
-                <h3 className="text-2xl font-bold text-foreground">Background</h3>
-                <p className="text-muted-foreground">Self-taught developer passionate about creating innovative solutions</p>
+                <h3 className="text-2xl font-bold text-foreground">Contact</h3>
+                <p className="text-muted-foreground leading-relaxed mb-6">
+                  If you&apos;d like to get in touch about work, collaboration, or anything development‑related, feel free to reach out using any of the methods below. I&apos;m always open to discussing new opportunities and interesting projects.
+                </p>
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-3">
+                    <span className="text-2xl">📧</span>
+                    <div>
+                      <h4 className="text-lg font-semibold text-foreground">Email</h4>
+                      <a 
+                        href="mailto:dylan.james.marley@gmail.com" 
+                        className="text-primary hover:text-primary/80 transition-colors underline"
+                      >
+                        dylan.james.marley@gmail.com
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          case 'github':
+            return (
+              <div className="space-y-4">
+                <h3 className="text-2xl font-bold text-foreground">Contact</h3>
+                <p className="text-muted-foreground leading-relaxed mb-6">
+                  If you&apos;d like to get in touch about work, collaboration, or anything development‑related, feel free to reach out using any of the methods below. I&apos;m always open to discussing new opportunities and interesting projects.
+                </p>
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-3">
+                    <span className="text-2xl">🐙</span>
+                    <div>
+                      <h4 className="text-lg font-semibold text-foreground">GitHub</h4>
+                      <a 
+                        href="https://github.com/Dylan-JM" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-primary hover:text-primary/80 transition-colors underline"
+                      >
+                        github.com/Dylan-JM
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          case 'linkedin':
+            return (
+              <div className="space-y-4">
+                <h3 className="text-2xl font-bold text-foreground">Contact</h3>
+                <p className="text-muted-foreground leading-relaxed mb-6">
+                  If you&apos;d like to get in touch about work, collaboration, or anything development‑related, feel free to reach out using any of the methods below. I&apos;m always open to discussing new opportunities and interesting projects.
+                </p>
+                <div className="space-y-4">
+                  <div className="flex items-center space-x-3">
+                    <span className="text-2xl">💼</span>
+                    <div>
+                      <h4 className="text-lg font-semibold text-foreground">LinkedIn</h4>
+                      <a 
+                        href="https://linkedin.com/in/dylan-marley-a439bb1b8" 
+                        target="_blank" 
+                        rel="noopener noreferrer"
+                        className="text-primary hover:text-primary/80 transition-colors underline"
+                      >
+                        linkedin.com/in/dylan-marley-a439bb1b8
+                      </a>
+                    </div>
+                  </div>
+                </div>
               </div>
             );
           default:

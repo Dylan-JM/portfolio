@@ -37,7 +37,7 @@ export default function XMBNavigation() {
     } else if (iconId === 'projects') {
       setSelectedSubItem('startup'); // First sub-category
     } else if (iconId === 'contact') {
-      setSelectedSubItem('background'); // First sub-category
+      setSelectedSubItem('email'); // First sub-category
     }
   };
 
