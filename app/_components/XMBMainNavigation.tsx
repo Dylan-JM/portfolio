@@ -48,12 +48,16 @@ export default function XMBMainNavigation({
           }}
           icon="🏠"
           label="Home"
+          categoryId="home"
           isSelected={selectedIcon === 'home'}
+          selectedSubItem={selectedSubItem}
+          subCategories={subCategories}
           color={{
             selected: 'text-blue-500',
             hover: 'text-blue-500/70'
           }}
           onClick={() => onIconClick('home')}
+          onSubItemClick={onSubItemClick}
         />
 
         {/* About Icon */}
@@ -61,14 +65,18 @@ export default function XMBMainNavigation({
           ref={(el) => {
             iconRefs.current[1] = el;
           }}
-          icon="👤"
+          icon="�"
           label="About"
+          categoryId="about"
           isSelected={selectedIcon === 'about'}
+          selectedSubItem={selectedSubItem}
+          subCategories={subCategories}
           color={{
             selected: 'text-purple-600',
             hover: 'text-purple-600/70'
           }}
           onClick={() => onIconClick('about')}
+          onSubItemClick={onSubItemClick}
         />
 
         {/* Projects Icon */}
@@ -78,97 +86,18 @@ export default function XMBMainNavigation({
           }}
           icon="💼"
           label="Projects"
+          categoryId="projects"
           isSelected={selectedIcon === 'projects'}
+          selectedSubItem={selectedSubItem}
+          subCategories={subCategories}
           color={{
             selected: 'text-pink-500',
             hover: 'text-pink-500/70'
           }}
           onClick={() => onIconClick('projects')}
+          onSubItemClick={onSubItemClick}
         />
       </div>
-
-      {/* Sub-Navigation - Below Related Icon */}
-      {selectedIcon && (
-        <div className="grid grid-cols-3 gap-20 justify-center items-start" style={{ width: 'fit-content', margin: '2rem auto 0' }}>
-          {/* Home Column */}
-          <div className="flex flex-col space-y-4">
-            {selectedIcon === 'home' && subCategories.home.map((subItem, index) => (
-              <div
-                key={subItem.id}
-                ref={(el) => {
-                  iconRefs.current[index] = el;
-                }}
-                className={`relative cursor-pointer transition-all duration-300 ${
-                  selectedSubItem === subItem.id
-                    ? 'scale-110 text-blue-500'
-                    : 'scale-100 text-foreground hover:text-blue-500/70'
-                }`}
-                onClick={() => onSubItemClick(subItem.id)}
-              >
-                <div className="flex flex-col items-center">
-                  <span className="text-3xl">{subItem.icon}</span>
-                  <span className="text-xs mt-1">{subItem.label}</span>
-                </div>
-                {selectedSubItem === subItem.id && (
-                  <div className="absolute -bottom-2 left-0 right-0 h-0.5 bg-blue-500 rounded-full" />
-                )}
-              </div>
-            ))}
-          </div>
-        
-          {/* About Column */}
-          <div className="flex flex-col space-y-4">
-            {selectedIcon === 'about' && subCategories.about.map((subItem, index) => (
-              <div
-                key={subItem.id}
-                ref={(el) => {
-                  iconRefs.current[index] = el;
-                }}
-                className={`relative cursor-pointer transition-all duration-300 ${
-                  selectedSubItem === subItem.id
-                    ? 'scale-110 text-purple-600'
-                    : 'scale-100 text-foreground hover:text-purple-600/70'
-                }`}
-                onClick={() => onSubItemClick(subItem.id)}
-              >
-                <div className="flex flex-col items-center">
-                  <span className="text-3xl">{subItem.icon}</span>
-                  <span className="text-xs mt-1">{subItem.label}</span>
-                </div>
-                {selectedSubItem === subItem.id && (
-                  <div className="absolute -bottom-2 left-0 right-0 h-0.5 bg-purple-600 rounded-full" />
-                )}
-              </div>
-            ))}
-          </div>
-        
-          {/* Projects Column */}
-          <div className="flex flex-col space-y-4">
-            {selectedIcon === 'projects' && subCategories.projects.map((subItem, index) => (
-              <div
-                key={subItem.id}
-                ref={(el) => {
-                  iconRefs.current[index] = el;
-                }}
-                className={`relative cursor-pointer transition-all duration-300 ${
-                  selectedSubItem === subItem.id
-                    ? 'scale-110 text-pink-500'
-                    : 'scale-100 text-foreground hover:text-pink-500/70'
-                }`}
-                onClick={() => onSubItemClick(subItem.id)}
-              >
-                <div className="flex flex-col items-center">
-                  <span className="text-3xl">{subItem.icon}</span>
-                  <span className="text-xs mt-1">{subItem.label}</span>
-                </div>
-                {selectedSubItem === subItem.id && (
-                  <div className="absolute -bottom-2 left-0 right-0 h-0.5 bg-pink-500 rounded-full" />
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
     </>
   );
 }
