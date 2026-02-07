@@ -52,6 +52,25 @@ export default function XMBMainNavigation({
           onSubItemClick={onSubItemClick}
         />
 
+        {/* Projects Icon */}
+        <XMBMainCategory
+          ref={(el) => {
+            iconRefs.current[2] = el;
+          }}
+          icon="💼"
+          label="Projects"
+          categoryId="projects"
+          isSelected={selectedIcon === 'projects'}
+          selectedSubItem={selectedSubItem}
+          subCategories={subCategories}
+          color={{
+            selected: 'text-pink-500',
+            hover: 'text-pink-500/70'
+          }}
+          onClick={() => onIconClick('projects')}
+          onSubItemClick={onSubItemClick}
+        />
+
         {/* About Icon */}
         <XMBMainCategory
           ref={(el) => {
@@ -71,24 +90,7 @@ export default function XMBMainNavigation({
           onSubItemClick={onSubItemClick}
         />
 
-        {/* Projects Icon */}
-        <XMBMainCategory
-          ref={(el) => {
-            iconRefs.current[2] = el;
-          }}
-          icon="💼"
-          label="Projects"
-          categoryId="projects"
-          isSelected={selectedIcon === 'projects'}
-          selectedSubItem={selectedSubItem}
-          subCategories={subCategories}
-          color={{
-            selected: 'text-pink-500',
-            hover: 'text-pink-500/70'
-          }}
-          onClick={() => onIconClick('projects')}
-          onSubItemClick={onSubItemClick}
-        />
+        
       </div>
     </>
   );
