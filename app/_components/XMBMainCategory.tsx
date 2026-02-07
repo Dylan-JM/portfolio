@@ -22,6 +22,54 @@ const XMBMainCategory = forwardRef<HTMLDivElement, XMBMainCategoryProps>(
   ({ icon, label, categoryId, isSelected, selectedSubItem, subCategories, color, onClick, onSubItemClick }, ref) => {
     const categorySubItems = subCategories[categoryId as keyof typeof subCategories] || [];
     const subItemRefs = useRef<(HTMLDivElement | null)[]>([]);
+    const mainCategoryRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+      // Animate main category when selection changes
+      const element = mainCategoryRef.current;
+      if (element) {
+        console.log('Animating main category:', isSelected, element);
+        if (isSelected) {
+          gsap.fromTo(element, {
+            scale: 1,
+          }, {
+            scale: 1.3,
+            duration: 0.4,
+            ease: "back.out(1.7)"
+          });
+        } else {
+          gsap.to(element, {
+            scale: 1,
+            duration: 0.3,
+            ease: "power2.in"
+          });
+        }
+      }
+    }, [isSelected]);
+
+    useEffect(() => {
+      // Animate sub-items when selection changes
+      categorySubItems.forEach((subItem: any, index: number) => {
+        const element = subItemRefs.current[index];
+        if (element) {
+          if (selectedSubItem === subItem.id) {
+            gsap.fromTo(element, {
+              scale: 1,
+            }, {
+              scale: 1.2,
+              duration: 0.3,
+              ease: "back.out(1.7)"
+            });
+          } else {
+            gsap.to(element, {
+              scale: 1,
+              duration: 0.2,
+              ease: "power2.in"
+            });
+          }
+        }
+      });
+    }, [selectedSubItem, categorySubItems]);
 
     useEffect(() => {
       // Animate sub-items when they appear
@@ -37,11 +85,11 @@ const XMBMainCategory = forwardRef<HTMLDivElement, XMBMainCategoryProps>(
       <div className="relative">
         {/* Main Category */}
         <div
-          ref={ref}
-          className={`relative cursor-pointer transition-all duration-300 ${
+          ref={mainCategoryRef}
+          className={`relative cursor-pointer ${
             isSelected 
-              ? 'scale-125 ' + color.selected 
-              : 'scale-100 text-foreground hover:' + color.hover
+              ? color.selected 
+              : 'text-foreground hover:' + color.hover
           }`}
           onClick={onClick}
         >
@@ -61,7 +109,7 @@ const XMBMainCategory = forwardRef<HTMLDivElement, XMBMainCategoryProps>(
                   ref={(el) => {
                     subItemRefs.current[index] = el;
                   }}
-                  className={`relative cursor-pointer transition-all duration-300 ${
+                  className={`relative cursor-pointer ${
                     selectedSubItem === subItem.id
                       ? 'scale-110 ' + color.selected
                       : 'scale-100 text-foreground hover:' + color.hover

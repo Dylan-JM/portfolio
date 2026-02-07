@@ -29,16 +29,6 @@ export default function XMBMainNavigation({
     );
   }, []);
 
-  useEffect(() => {
-    // Animate main icons when main icon is selected
-    if (selectedIcon) {
-      gsap.fromTo(iconRefs.current,
-        { opacity: 0, y: -20 },
-        { opacity: 1, y: 0, duration: 0.4, stagger: 0.1, ease: "power2.out" }
-      );
-    }
-  }, [selectedIcon]);
-
   return (
     <>
       {/* Main Navigation - XMB Style */}
