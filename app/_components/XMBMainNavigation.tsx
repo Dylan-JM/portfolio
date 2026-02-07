@@ -27,15 +27,17 @@ export default function XMBMainNavigation({
       { opacity: 0, scale: 0.8 },
       { opacity: 1, scale: 1, duration: 0.5, stagger: 0.1, ease: "power2.out" }
     );
+  }, []);
 
-    // Animate sub-items when main icon is selected
-    if (selectedIcon && subCategories[selectedIcon as keyof typeof subCategories]) {
+  useEffect(() => {
+    // Animate main icons when main icon is selected
+    if (selectedIcon) {
       gsap.fromTo(iconRefs.current,
         { opacity: 0, y: -20 },
         { opacity: 1, y: 0, duration: 0.4, stagger: 0.1, ease: "power2.out" }
       );
     }
-  }, [selectedIcon, subCategories]);
+  }, [selectedIcon]);
 
   return (
     <>

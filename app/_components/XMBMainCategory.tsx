@@ -1,6 +1,7 @@
 'use client';
 
-import { forwardRef } from 'react';
+import { forwardRef, useEffect, useRef } from 'react';
+import gsap from 'gsap';
 
 interface XMBMainCategoryProps {
   icon: string;
@@ -20,6 +21,17 @@ interface XMBMainCategoryProps {
 const XMBMainCategory = forwardRef<HTMLDivElement, XMBMainCategoryProps>(
   ({ icon, label, categoryId, isSelected, selectedSubItem, subCategories, color, onClick, onSubItemClick }, ref) => {
     const categorySubItems = subCategories[categoryId as keyof typeof subCategories] || [];
+    const subItemRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+    useEffect(() => {
+      // Animate sub-items when they appear
+      if (isSelected && categorySubItems.length > 0) {
+        gsap.fromTo(subItemRefs.current,
+          { opacity: 0, y: -10 },
+          { opacity: 1, y: 0, duration: 0.3, stagger: 0.1, ease: "power2.out" }
+        );
+      }
+    }, [isSelected, categorySubItems.length]);
 
     return (
       <div className="relative">
@@ -43,9 +55,12 @@ const XMBMainCategory = forwardRef<HTMLDivElement, XMBMainCategoryProps>(
         {isSelected && (
           <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4">
             <div className="flex flex-col space-y-4">
-              {categorySubItems.map((subItem: any) => (
+              {categorySubItems.map((subItem: any, index: number) => (
                 <div
                   key={subItem.id}
+                  ref={(el) => {
+                    subItemRefs.current[index] = el;
+                  }}
                   className={`relative cursor-pointer transition-all duration-300 ${
                     selectedSubItem === subItem.id
                       ? 'scale-110 ' + color.selected
