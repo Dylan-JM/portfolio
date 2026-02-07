@@ -76,17 +76,17 @@ export default function XMBMainNavigation({
           ref={(el) => {
             iconRefs.current[1] = el;
           }}
-          icon="�"
-          label="About"
-          categoryId="about"
-          isSelected={selectedIcon === 'about'}
+          icon="👤"
+          label="Contact"
+          categoryId="contact"
+          isSelected={selectedIcon === 'contact'}
           selectedSubItem={selectedSubItem}
           subCategories={subCategories}
           color={{
             selected: 'text-purple-600',
             hover: 'text-purple-600/70'
           }}
-          onClick={() => onIconClick('about')}
+          onClick={() => onIconClick('contact')}
           onSubItemClick={onSubItemClick}
         />
 

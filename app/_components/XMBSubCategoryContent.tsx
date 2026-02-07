@@ -6,9 +6,10 @@ import gsap from 'gsap';
 interface XMBSubCategoryContentProps {
   selectedIcon: string;
   selectedSubItem: string | null;
+  contentOffset?: string;
 }
 
-export default function XMBSubCategoryContent({ selectedIcon, selectedSubItem }: XMBSubCategoryContentProps) {
+export default function XMBSubCategoryContent({ selectedIcon, selectedSubItem, contentOffset }: XMBSubCategoryContentProps) {
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -114,39 +115,6 @@ export default function XMBSubCategoryContent({ selectedIcon, selectedSubItem }:
           default:
             return null;
         }
-      case 'about':
-        switch (selectedSubItem) {
-          case 'background':
-            return (
-              <div className="space-y-4">
-                <h3 className="text-2xl font-bold text-foreground">Background</h3>
-                <p className="text-muted-foreground">Self-taught developer passionate about creating innovative solutions</p>
-              </div>
-            );
-          case 'education':
-            return (
-              <div className="space-y-4">
-                <h3 className="text-2xl font-bold text-foreground">Education</h3>
-                <p className="text-muted-foreground">Continuous learning through online courses and hands-on projects</p>
-              </div>
-            );
-          case 'interests':
-            return (
-              <div className="space-y-4">
-                <h3 className="text-2xl font-bold text-foreground">Interests</h3>
-                <p className="text-muted-foreground">Game development, AI/ML, system architecture, user experience</p>
-              </div>
-            );
-          case 'goals':
-            return (
-              <div className="space-y-4">
-                <h3 className="text-2xl font-bold text-foreground">Goals</h3>
-                <p className="text-muted-foreground">Build scalable applications and contribute to open-source projects</p>
-              </div>
-            );
-          default:
-            return null;
-        }
       case 'projects':
         return (
           <div className="space-y-4">
@@ -156,7 +124,21 @@ export default function XMBSubCategoryContent({ selectedIcon, selectedSubItem }:
         );
       default:
         return null;
+        case 'contact':
+        switch (selectedSubItem) {
+          case 'background':
+            return (
+              <div className="space-y-4">
+                <h3 className="text-2xl font-bold text-foreground">Background</h3>
+                <p className="text-muted-foreground">Self-taught developer passionate about creating innovative solutions</p>
+              </div>
+            );
+
+          default:
+            return null;
+        }
     }
+    
   };
 
   if (!selectedIcon || !selectedSubItem) return null;
@@ -164,7 +146,7 @@ export default function XMBSubCategoryContent({ selectedIcon, selectedSubItem }:
   return (
     <div 
       ref={contentRef}
-      className="absolute top-96 right-1/4 w-[600px] max-h-96 overflow-y-auto transition-opacity duration-500 opacity-100"
+      className={`absolute w-[600px] max-h-96 overflow-y-auto transition-opacity duration-500 opacity-100 top-96 ${contentOffset}`}
     >
       <div className="bg-card/30 backdrop-blur-sm border border-border rounded-xl p-6">
         {renderContent()}
