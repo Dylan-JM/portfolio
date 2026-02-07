@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import XMBMainCategory from './XMBMainCategory';
+import { mainCategoryIcons } from '@/app/_data/categories';
 
 interface XMBMainNavigationProps {
   selectedIcon: string;
@@ -38,7 +39,7 @@ export default function XMBMainNavigation({
           ref={(el) => {
             iconRefs.current[0] = el;
           }}
-          icon="🏠"
+          icon={mainCategoryIcons.home}
           label="Home"
           categoryId="home"
           isSelected={selectedIcon === 'home'}
@@ -57,7 +58,7 @@ export default function XMBMainNavigation({
           ref={(el) => {
             iconRefs.current[2] = el;
           }}
-          icon="💼"
+          icon={mainCategoryIcons.projects}
           label="Projects"
           categoryId="projects"
           isSelected={selectedIcon === 'projects'}
@@ -71,12 +72,12 @@ export default function XMBMainNavigation({
           onSubItemClick={onSubItemClick}
         />
 
-        {/* About Icon */}
+        {/* Contact Icon */}
         <XMBMainCategory
           ref={(el) => {
             iconRefs.current[1] = el;
           }}
-          icon="👤"
+          icon={mainCategoryIcons.contact}
           label="Contact"
           categoryId="contact"
           isSelected={selectedIcon === 'contact'}

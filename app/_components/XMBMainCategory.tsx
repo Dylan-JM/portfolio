@@ -1,7 +1,8 @@
 'use client';
 
-import { forwardRef, useEffect, useRef } from 'react';
+import { forwardRef, useEffect, useRef, useMemo } from 'react';
 import gsap from 'gsap';
+import Image from 'next/image';
 
 interface XMBMainCategoryProps {
   icon: string;
@@ -20,7 +21,10 @@ interface XMBMainCategoryProps {
 
 const XMBMainCategory = forwardRef<HTMLDivElement, XMBMainCategoryProps>(
   ({ icon, label, categoryId, isSelected, selectedSubItem, subCategories, color, onClick, onSubItemClick }, ref) => {
-    const categorySubItems = subCategories[categoryId as keyof typeof subCategories] || [];
+    const categorySubItems = useMemo(() => 
+      subCategories[categoryId as keyof typeof subCategories] || [], 
+      [categoryId, subCategories]
+    );
     const subItemRefs = useRef<(HTMLDivElement | null)[]>([]);
     const mainCategoryRef = useRef<HTMLDivElement>(null);
 
@@ -94,7 +98,16 @@ const XMBMainCategory = forwardRef<HTMLDivElement, XMBMainCategoryProps>(
           onClick={onClick}
         >
           <div className="flex flex-col items-center">
-            <span className="text-6xl">{icon}</span>
+            <div className="relative w-16 h-16">
+              <Image
+                src={icon}
+                alt={label}
+                fill
+                className={`object-contain transition-all duration-300 ${
+                  isSelected ? 'scale-110' : 'scale-100'
+                }`}
+              />
+            </div>
             <span className="text-sm mt-2">{label}</span>
           </div>
         </div>
@@ -117,7 +130,16 @@ const XMBMainCategory = forwardRef<HTMLDivElement, XMBMainCategoryProps>(
                   onClick={() => onSubItemClick(subItem.id)}
                 >
                   <div className="flex flex-col items-center">
-                    <span className="text-3xl">{subItem.icon}</span>
+                    <div className="relative w-8 h-8">
+                      <Image
+                        src={subItem.icon}
+                        alt={subItem.label}
+                        fill
+                        className={`object-contain transition-all duration-300 ${
+                          selectedSubItem === subItem.id ? 'scale-110' : 'scale-100'
+                        }`}
+                      />
+                    </div>
                     <span className="text-xs mt-1">{subItem.label}</span>
                   </div>
                   {selectedSubItem === subItem.id && (
