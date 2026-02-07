@@ -114,7 +114,7 @@ export default function XMBNavigation() {
         contentOffset={
           selectedIcon === 'home' ? 'right-1/4' :
           selectedIcon === 'projects' ? 'right-1/6' :
-          selectedIcon === 'contact' ? 'left-[62%]' :
+          selectedIcon === 'contact' ? 'left-[61%]' :
           'right-1/4'
         }
       />
