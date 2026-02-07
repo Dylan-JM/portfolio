@@ -67,7 +67,9 @@ export default function XMBNavigation() {
         e.preventDefault();
         if (selectedIcon && subCategories[selectedIcon as keyof typeof subCategories]) {
           const subItems = subCategories[selectedIcon as keyof typeof subCategories];
-          const currentSubIndex = selectedSubItem ? subItems.findIndex((item: any) => item.id === selectedSubItem) : -1;
+          const currentSubIndex = selectedSubItem
+            ? subItems.findIndex((item) => item.id === selectedSubItem)
+            : -1;
           if (currentSubIndex < subItems.length - 1) {
             handleSubItemClick(subItems[currentSubIndex + 1].id);
           }
@@ -75,8 +77,17 @@ export default function XMBNavigation() {
         break;
       case 'ArrowUp':
         e.preventDefault();
-        if (selectedSubItem) {
-          setSelectedSubItem(null);
+        if (selectedIcon && subCategories[selectedIcon as keyof typeof subCategories]) {
+          const subItems = subCategories[selectedIcon as keyof typeof subCategories];
+          const currentSubIndex = selectedSubItem
+            ? subItems.findIndex((item) => item.id === selectedSubItem)
+            : subItems.length;
+
+          if (currentSubIndex > 0) {
+            handleSubItemClick(subItems[currentSubIndex - 1].id);
+          } else {
+            setSelectedSubItem(null);
+          }
         }
         break;
     }
