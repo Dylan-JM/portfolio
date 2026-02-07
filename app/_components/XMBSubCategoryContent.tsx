@@ -2,6 +2,8 @@
 
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import { ProjectsGrid } from './ProjectsGrid';
+import { projectCategories } from '@/app/_data/categories';
 
 interface XMBSubCategoryContentProps {
   selectedIcon: string;
@@ -116,10 +118,34 @@ export default function XMBSubCategoryContent({ selectedIcon, selectedSubItem, c
             return null;
         }
       case 'projects':
+        if (!selectedSubItem) {
+          return (
+            <div className="space-y-4">
+              <h3 className="text-2xl font-bold text-foreground">Projects</h3>
+              <p className="text-muted-foreground">Select a project category to view details</p>
+            </div>
+          );
+        }
+        
+        const category = projectCategories.find(cat => cat.id === selectedSubItem);
+        if (!category) {
+          return (
+            <div className="space-y-4">
+              <h3 className="text-2xl font-bold text-foreground">Projects</h3>
+              <p className="text-muted-foreground">Category not found</p>
+            </div>
+          );
+        }
+
         return (
           <div className="space-y-4">
-            <h3 className="text-2xl font-bold text-foreground">Projects</h3>
-            <p className="text-muted-foreground">Select a project category to view details</p>
+            <h3 className="text-2xl font-bold text-foreground">{category.label}</h3>
+            <p className="text-muted-foreground text-sm">{category.icon} {category.projects.length} projects</p>
+            {category.projects.length > 0 ? (
+              <ProjectsGrid projects={category.projects} />
+            ) : (
+              <p className="text-muted-foreground">No projects in this category yet.</p>
+            )}
           </div>
         );
       case 'contact':
