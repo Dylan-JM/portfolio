@@ -1,24 +1,20 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 import XMBSubCategoryContent from './XMBSubCategoryContent';
 import XMBSystemInfo from './XMBSystemInfo';
 import XMBMainNavigation from './XMBMainNavigation';
-import Image from 'next/image';
-import { subCategories, projectCategories } from '@/app/_data/categories';
+import { subCategories } from '@/app/_data/categories';
 
 gsap.registerPlugin(ScrollTrigger);
 
 export default function XMBNavigation() {
   const [selectedIcon, setSelectedIcon] = useState('home');
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  const [selectedProject, setSelectedProject] = useState<string | null>(null);
   const [selectedSubItem, setSelectedSubItem] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
-  const projectRefs = useRef<(HTMLDivElement | null)[]>([]);
   const audioRef = useRef<HTMLAudioElement>(null);
 
   // Play navigation sound
@@ -34,8 +30,6 @@ export default function XMBNavigation() {
   const handleIconClick = (iconId: string) => {
     playNavSound();
     setSelectedIcon(iconId);
-    setSelectedCategory(null);
-    setSelectedProject(null);
     
     // Auto-select first sub-category for each main category
     if (iconId === 'home') {

@@ -13,7 +13,7 @@ interface XMBContentProps {
   link?: string;
 }
 
-export default function XMBContent({ title, description, icon, isActive, children, tech, link }: XMBContentProps) {
+export default function XMBContent({ title, description, icon, isActive, tech, link }: XMBContentProps) {
   const contentRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {

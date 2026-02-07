@@ -7,7 +7,7 @@ import XMBMainCategory from './XMBMainCategory';
 interface XMBMainNavigationProps {
   selectedIcon: string;
   selectedSubItem: string | null;
-  subCategories: any;
+  subCategories: [];
   onIconClick: (iconId: string) => void;
   onSubItemClick: (subItemId: string) => void;
 }
