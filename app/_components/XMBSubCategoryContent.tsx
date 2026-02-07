@@ -171,7 +171,7 @@ export default function XMBSubCategoryContent({ selectedIcon, selectedSubItem, c
   return (
     <div 
       ref={contentRef}
-      className={`absolute w-[600px] max-h-96 overflow-y-auto transition-opacity duration-500 opacity-100 top-96 ${contentOffset} ${selectedIcon === 'contact' ? 'ml-[10px]' : ''}`}
+      className={`absolute ${selectedIcon === 'projects' ? 'w-[1000px]' : 'w-[600px]'} ${selectedIcon === 'projects' ? 'max-h-128' : 'max-h-96'} overflow-y-auto transition-opacity duration-500 opacity-100 top-96 ${contentOffset} ${selectedIcon === 'contact' ? 'ml-[10px]' : ''}`}
     >
       <div className="bg-card/30 backdrop-blur-sm border border-border rounded-xl p-6">
         {renderContent()}
