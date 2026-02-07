@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { projects } from '@/app/_data/projects';
-import XMBSubContent from './XMBSubContent';
+import XMBSubCategoryContent from './XMBSubCategoryContent';
 import XMBSystemInfo from './XMBSystemInfo';
 import XMBMainNavigation from './XMBMainNavigation';
 import Image from 'next/image';
@@ -156,10 +156,9 @@ export default function XMBNavigation() {
       </div>
 
       {/* Content Display - Only Sub-Content */}
-      <XMBSubContent
+      <XMBSubCategoryContent
         selectedIcon={selectedIcon}
         selectedSubItem={selectedSubItem}
-        subCategories={subCategories}
       />
     </>
   );
