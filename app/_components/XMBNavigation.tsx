@@ -128,15 +128,6 @@ export default function XMBNavigation() {
       <XMBSubCategoryContent
         selectedIcon={selectedIcon}
         selectedSubItem={selectedSubItem}
-        contentOffset={
-          selectedIcon === "home"
-            ? "left-[10%]"
-            : selectedIcon === "projects"
-              ? "left-[20%]"
-              : selectedIcon === "contact"
-                ? "left-[28%]"
-                : "left-[15%]"
-        }
       />
     </>
   );
