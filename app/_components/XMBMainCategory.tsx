@@ -63,28 +63,41 @@ const XMBMainCategory = forwardRef<HTMLDivElement, XMBMainCategoryProps>(
     }, [isSelected]);
 
     useEffect(() => {
-      // No GSAP animations needed - positioning handled by separate containers
-      // Just handle opacity for selected state
+      // Container-based scrolling - proper positioning without overlap
       if (isSelected && selectedSubItem) {
         const selectedIndex = categorySubItems.findIndex((item: SubCategoryItem) => item.id === selectedSubItem);
         
         if (selectedIndex !== -1) {
+          // Animate all items to their new positions
           categorySubItems.forEach((subItem: SubCategoryItem, index: number) => {
             const element = subItemRefs.current[index];
             if (element) {
-              if (index === selectedIndex) {
-                // Selected item - slight scale animation
-                gsap.fromTo(element, {
-                  scale: 1.0,
-                }, {
-                  scale: 1.1,
-                  duration: 0.25,
-                  ease: "power2.out"
-                });
-              }
+              const targetY = (index - selectedIndex) * 20; // Calculate position relative to selected
+              
+              gsap.to(element, {
+                scale: 1.2, // All items same size
+                opacity: 0.7, // All items same opacity
+                y: targetY,
+                duration: 0.4,
+                ease: "power2.inOut"
+              });
             }
           });
         }
+      } else if (!isSelected) {
+        // Reset all items when deselected
+        categorySubItems.forEach((subItem: SubCategoryItem, index: number) => {
+          const element = subItemRefs.current[index];
+          if (element) {
+            gsap.to(element, {
+              scale: 1,
+              opacity: 1,
+              y: 0,
+              duration: 0.3,
+              ease: "power2.in"
+            });
+          }
+        });
       }
     }, [selectedSubItem, categorySubItems, isSelected]);
 
