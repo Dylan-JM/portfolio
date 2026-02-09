@@ -69,7 +69,9 @@ export default function XMBNavigation() {
 
       const currentSelectedIcon = selectedIconRef.current;
       const currentSelectedSubItem = selectedSubItemRef.current;
-      const currentIndex = icons.indexOf(currentSelectedIcon as (typeof icons)[number]);
+      const currentIndex = icons.indexOf(
+        currentSelectedIcon as (typeof icons)[number],
+      );
 
       switch (e.key) {
         case "ArrowLeft":
@@ -138,8 +140,8 @@ export default function XMBNavigation() {
         tabIndex={-1}
       >
         {/* Mobile: scrollable main bar below system info */}
-        <div className="md:hidden overflow-x-auto scrollbar-overlay shrink-0 border-b border-border/50 bg-background/80 backdrop-blur-sm">
-          <div className="flex gap-6 px-4 py-3 w-fit min-w-full justify-center">
+        <div className="md:hidden overflow-x-auto overflow-y-hidden scrollbar-overlay shrink-0 min-w-0 border-b border-border/50 bg-background/80 backdrop-blur-sm">
+          <div className="flex gap-6 pl-2 pr-4 py-3 w-fit min-w-full justify-start">
             <XMBMainNavigation
               selectedIcon={selectedIcon}
               selectedSubItem={selectedSubItem}
@@ -152,16 +154,16 @@ export default function XMBNavigation() {
         {/* Desktop: main nav + content */}
         <div className="hidden md:flex flex-row items-start gap-1">
           <XMBMainNavigation
-          selectedIcon={selectedIcon}
-          selectedSubItem={selectedSubItem}
-          subCategories={subCategories}
-          onIconClick={handleIconClick}
-          onSubItemClick={handleSubItemClick}
-        />
-        <XMBSubCategoryContent
-          selectedIcon={selectedIcon}
-          selectedSubItem={selectedSubItem}
-        />
+            selectedIcon={selectedIcon}
+            selectedSubItem={selectedSubItem}
+            subCategories={subCategories}
+            onIconClick={handleIconClick}
+            onSubItemClick={handleSubItemClick}
+          />
+          <XMBSubCategoryContent
+            selectedIcon={selectedIcon}
+            selectedSubItem={selectedSubItem}
+          />
         </div>
         {/* Mobile: sub-bar (left) + content (right) */}
         <div className="md:hidden flex flex-row flex-1 min-h-0 pt-2 overflow-hidden">
