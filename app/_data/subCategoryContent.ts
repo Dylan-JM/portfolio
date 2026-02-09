@@ -16,10 +16,12 @@ export type ContentGrid = {
   sections: { title: string; items: string[] }[];
 };
 
+export type ContactIconKey = "mail" | "github" | "linkedin";
+
 export type ContentContact = {
   type: "contact";
   intro: string;
-  items: { icon: string; label: string; href: string; text: string }[];
+  items: { icon: ContactIconKey; label: string; href: string; text: string }[];
 };
 
 export type ContentConfig =
@@ -102,7 +104,7 @@ export const subCategoryContent: Record<
         "If you'd like to get in touch about work, collaboration, or anything development‑related, feel free to reach out using any of the methods below. I'm always open to discussing new opportunities and interesting projects.",
       items: [
         {
-          icon: "📧",
+          icon: "mail",
           label: "Email",
           href: "mailto:dylan.james.marley@gmail.com",
           text: "dylan.james.marley@gmail.com",
@@ -115,7 +117,7 @@ export const subCategoryContent: Record<
         "If you'd like to get in touch about work, collaboration, or anything development‑related, feel free to reach out using any of the methods below. I'm always open to discussing new opportunities and interesting projects.",
       items: [
         {
-          icon: "🐙",
+          icon: "github",
           label: "GitHub",
           href: "https://github.com/Dylan-JM",
           text: "github.com/Dylan-JM",
@@ -128,7 +130,7 @@ export const subCategoryContent: Record<
         "If you'd like to get in touch about work, collaboration, or anything development‑related, feel free to reach out using any of the methods below. I'm always open to discussing new opportunities and interesting projects.",
       items: [
         {
-          icon: "💼",
+          icon: "linkedin",
           label: "LinkedIn",
           href: "https://linkedin.com/in/dylan-marley-a439bb1b8",
           text: "linkedin.com/in/dylan-marley-a439bb1b8",

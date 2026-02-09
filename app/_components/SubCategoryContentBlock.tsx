@@ -6,9 +6,17 @@ import type {
   ContentList,
   ContentGrid,
   ContentContact,
+  ContactIconKey,
 } from "@/app/_data/subCategoryContent";
 import type { Project } from "@/app/_types/project";
+import { Mail, Github, Linkedin } from "lucide-react";
 import { ProjectsGrid } from "./ProjectsGrid";
+
+const contactIcons: Record<ContactIconKey, React.ComponentType<{ className?: string }>> = {
+  mail: Mail,
+  github: Github,
+  linkedin: Linkedin,
+};
 
 interface SubCategoryContentBlockProps {
   content?: ContentConfig;
@@ -98,9 +106,13 @@ export default function SubCategoryContentBlock({
         <h3 className="text-2xl font-bold text-foreground">Contact</h3>
         <p className="text-muted-foreground leading-relaxed mb-6">{intro}</p>
         <div className="space-y-4">
-          {items.map((item) => (
+          {items.map((item) => {
+            const IconComponent = contactIcons[item.icon];
+            return (
             <div key={item.label} className="flex items-center space-x-3">
-              <span className="text-2xl">{item.icon}</span>
+              {IconComponent && (
+                <IconComponent className="size-6 shrink-0 text-foreground" />
+              )}
               <div>
                 <h4 className="text-lg font-semibold text-foreground">
                   {item.label}
@@ -119,7 +131,8 @@ export default function SubCategoryContentBlock({
                 </a>
               </div>
             </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     );
