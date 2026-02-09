@@ -1,9 +1,11 @@
 'use client';
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { ProjectsGrid } from './ProjectsGrid';
 import { projectCategories } from '@/app/_data/categories';
+import { Project } from '@/app/_types/project';
+import ProjectDetailModal from './ProjectDetailModal';
 
 interface XMBSubCategoryContentProps {
   selectedIcon: string;
@@ -13,6 +15,18 @@ interface XMBSubCategoryContentProps {
 
 export default function XMBSubCategoryContent({ selectedIcon, selectedSubItem, contentOffset }: XMBSubCategoryContentProps) {
   const contentRef = useRef<HTMLDivElement>(null);
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleProjectClick = (project: Project) => {
+    setSelectedProject(project);
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setSelectedProject(null);
+  };
 
   useEffect(() => {
     if (selectedIcon && selectedSubItem && contentRef.current) {
@@ -142,7 +156,7 @@ export default function XMBSubCategoryContent({ selectedIcon, selectedSubItem, c
             <h3 className="text-2xl font-bold text-foreground">{category.label}</h3>
             <p className="text-muted-foreground text-sm">{category.icon} {category.projects.length} projects</p>
             {category.projects.length > 0 ? (
-              <ProjectsGrid projects={category.projects} />
+              <ProjectsGrid projects={category.projects} onProjectClick={handleProjectClick} />
             ) : (
               <p className="text-muted-foreground">No projects in this category yet.</p>
             )}
@@ -235,13 +249,21 @@ export default function XMBSubCategoryContent({ selectedIcon, selectedSubItem, c
   if (!selectedIcon || !selectedSubItem) return null;
 
   return (
-    <div 
-      ref={contentRef}
-      className={`absolute ${selectedIcon === 'projects' ? 'w-[1000px]' : 'w-[600px]'} ${selectedIcon === 'projects' ? 'max-h-128' : 'max-h-96'} overflow-y-auto transition-opacity duration-500 opacity-100 top-96 ${contentOffset} ${selectedIcon === 'contact' ? 'ml-[10px]' : ''}`}
-    >
-      <div className="bg-card/30 backdrop-blur-sm border border-border rounded-xl p-6">
-        {renderContent()}
+    <>
+      <div 
+        ref={contentRef}
+        className={`absolute ${selectedIcon === 'projects' ? 'w-[1000px]' : 'w-[600px]'} ${selectedIcon === 'projects' ? 'max-h-128' : 'max-h-96'} overflow-y-auto transition-opacity duration-500 opacity-100 top-96 ${contentOffset} ${selectedIcon === 'contact' ? 'ml-[10px]' : ''}`}
+      >
+        <div className="bg-card/30 backdrop-blur-sm border border-border rounded-xl p-6">
+          {renderContent()}
+        </div>
       </div>
-    </div>
+      
+      <ProjectDetailModal
+        project={selectedProject}
+        isOpen={isModalOpen}
+        onClose={handleCloseModal}
+      />
+    </>
   );
 }

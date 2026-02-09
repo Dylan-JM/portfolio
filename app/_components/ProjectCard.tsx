@@ -1,11 +1,15 @@
 import Image from "next/image";
-import Link from "next/link";
 import type { Project } from "@/app/_types/project";
 
-export default function ProjectCard({ project }: { project: Project }) {
+interface ProjectCardProps {
+  project: Project;
+  onProjectClick: (project: Project) => void;
+}
+
+export default function ProjectCard({ project, onProjectClick }: ProjectCardProps) {
   return (
-    <Link
-      href={`/projects/${project.slug}`}
+    <button
+      onClick={() => onProjectClick(project)}
       className="
         block
         bg-card/50
@@ -19,6 +23,8 @@ export default function ProjectCard({ project }: { project: Project }) {
         hover:-translate-y-1
         hover:shadow-xl
         hover:bg-card/70
+        text-left w-full
+        cursor-pointer
       "
     >
       {project.thumbnail && (
@@ -54,6 +60,6 @@ export default function ProjectCard({ project }: { project: Project }) {
           </span>
         )}
       </div>
-    </Link>
+    </button>
   );
 }
