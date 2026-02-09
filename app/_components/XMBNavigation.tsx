@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+import XMBSubCategoryBar from "./XMBSubCategoryBar";
 import XMBSubCategoryContent from "./XMBSubCategoryContent";
 import XMBSystemInfo from "./XMBSystemInfo";
 import XMBMainNavigation from "./XMBMainNavigation";
@@ -111,11 +112,25 @@ export default function XMBNavigation() {
 
       <div
         ref={containerRef}
-        className="fixed top-0 left-0 z-50 flex flex-row items-start gap-1 pt-[14%] pl-[5%]"
+        className="fixed top-0 left-0 right-0 bottom-0 md:bottom-auto z-50 md:right-auto flex flex-col md:flex-row md:items-start md:gap-1 pt-16 md:pt-[14%] pl-0 md:pl-[5%] pr-0"
         onKeyDown={handleKeyDown}
         tabIndex={0}
       >
-        <XMBMainNavigation
+        {/* Mobile: scrollable main bar below system info */}
+        <div className="md:hidden overflow-x-auto shrink-0 border-b border-border/50 bg-background/80 backdrop-blur-sm">
+          <div className="flex gap-6 px-4 py-3 w-fit min-w-full justify-center">
+            <XMBMainNavigation
+              selectedIcon={selectedIcon}
+              selectedSubItem={selectedSubItem}
+              subCategories={subCategories}
+              onIconClick={handleIconClick}
+              onSubItemClick={handleSubItemClick}
+            />
+          </div>
+        </div>
+        {/* Desktop: main nav + content */}
+        <div className="hidden md:flex flex-row items-start gap-1">
+          <XMBMainNavigation
           selectedIcon={selectedIcon}
           selectedSubItem={selectedSubItem}
           subCategories={subCategories}
@@ -126,6 +141,22 @@ export default function XMBNavigation() {
           selectedIcon={selectedIcon}
           selectedSubItem={selectedSubItem}
         />
+        </div>
+        {/* Mobile: sub-bar (left) + content (right) */}
+        <div className="md:hidden flex flex-row flex-1 min-h-0 pt-2 overflow-hidden">
+          <XMBSubCategoryBar
+            selectedIcon={selectedIcon}
+            selectedSubItem={selectedSubItem}
+            subCategories={subCategories}
+            onSubItemClick={handleSubItemClick}
+          />
+          <div className="flex-1 min-w-0 overflow-hidden">
+            <XMBSubCategoryContent
+              selectedIcon={selectedIcon}
+              selectedSubItem={selectedSubItem}
+            />
+          </div>
+        </div>
       </div>
     </>
   );

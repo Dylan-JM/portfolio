@@ -146,9 +146,9 @@ const XMBMainCategory = forwardRef<HTMLDivElement, XMBMainCategoryProps>(
           </div>
         </div>
 
-        {/* Scrolled Items - positioned absolutely above main icon */}
+        {/* Scrolled Items - positioned absolutely above main icon (desktop only) */}
         {isSelected && selectedSubItem && (
-          <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4">
+          <div className="hidden md:block absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4">
             <div className="flex flex-col space-y-2">
               {categorySubItems.map((subItem: SubCategoryItem, index: number) => {
                 const selectedIndex = categorySubItems.findIndex((item: SubCategoryItem) => item.id === selectedSubItem);
@@ -181,9 +181,9 @@ const XMBMainCategory = forwardRef<HTMLDivElement, XMBMainCategoryProps>(
           </div>
         )}
 
-        {/* Sub-Content - positioned absolutely below main icon */}
+        {/* Sub-Content - positioned absolutely below main icon (desktop only) */}
         {isSelected && (
-          <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-4">
+          <div className="hidden md:block absolute top-full left-1/2 transform -translate-x-1/2 mt-4">
             <div className="flex flex-col space-y-4">
               {categorySubItems.map((subItem: SubCategoryItem, index: number) => {
                 const selectedIndex = categorySubItems.findIndex((item: SubCategoryItem) => item.id === selectedSubItem);
