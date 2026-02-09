@@ -1,6 +1,6 @@
 'use client';
 
-import { useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import Wave from 'react-wavify';
 import { Meteors } from '@/components/ui/meteors';
@@ -20,17 +20,22 @@ export default function PS3Background() {
   const waveWrappersRef = useRef<(HTMLDivElement | null)[]>([]);
   const particlesRef = useRef<SVGCircleElement[]>([]);
 
-  const [particles] = useState(() =>
-    Array.from({ length: PARTICLE_COUNT }, (_, i) => ({
-      id: i,
-      cx: Math.random() * 1920,
-      cy: 200 + Math.random() * 680,
-      r: 0.5 + Math.random() * 1.5,
-      opacity: 0.2 + Math.random() * 0.5,
-    }))
-  );
+  const [particles, setParticles] = useState<Array<{ id: number; cx: number; cy: number; r: number; opacity: number }>>([]);
+
+  useEffect(() => {
+    setParticles(
+      Array.from({ length: PARTICLE_COUNT }, (_, i) => ({
+        id: i,
+        cx: Math.random() * 1920,
+        cy: 200 + Math.random() * 680,
+        r: 0.5 + Math.random() * 1.5,
+        opacity: 0.2 + Math.random() * 0.5,
+      }))
+    );
+  }, []);
 
   useLayoutEffect(() => {
+    if (particles.length === 0) return;
     const particleEls = particlesRef.current.filter(Boolean);
     if (particleEls.length === 0) return;
 
@@ -44,7 +49,7 @@ export default function PS3Background() {
     });
 
     return () => { particleTween.kill(); };
-  }, []);
+  }, [particles.length]);
 
   return (
     <div
