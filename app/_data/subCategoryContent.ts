@@ -28,13 +28,15 @@ export type ContentConfig =
   | ContentGrid
   | ContentContact;
 
-export const subCategoryContent: Record<string, Record<string, ContentConfig>> = {
+export const subCategoryContent: Record<
+  string,
+  Record<string, ContentConfig>
+> = {
   home: {
     about: {
       type: "paragraph",
       title: "Full Stack Developer",
-      body:
-        "I'm Dylan Marley, a developer specialising in Web Development with Javascript, NextJs, TypeScript and Game Development with Unreal Engine and C++ along with cloud-backed multiplayer systems. I build production-ready features for both web applications and games.",
+      body: "I'm Dylan Marley, a developer specialising in Web Development with Javascript, NextJs, TypeScript and Game Development with Unreal Engine and C++ along with cloud-backed multiplayer systems. I build production-ready features for both web applications and games.",
     },
     skills: {
       type: "grid",
@@ -64,8 +66,7 @@ export const subCategoryContent: Record<string, Record<string, ContentConfig>> =
     "what-i-do": {
       type: "paragraph",
       title: "What I Do",
-      body:
-        "My work spans gameplay programming, backend development, and systems design. I build clean, maintainable codebases and focus on delivering features that scale — whether that's multiplayer combat systems, AI frameworks, or full stack web applications. I've worked across multiple startups, often taking ownership of architecture, code quality, and mentoring other developers.",
+      body: "My work spans gameplay programming, backend development, and systems design. I build clean, maintainable codebases and focus on delivering features that scale — whether that's multiplayer combat systems, AI frameworks, or full stack web applications. I've worked across multiple startups, often taking ownership of architecture, code quality, and mentoring other developers.",
     },
     "technical-focus": {
       type: "list",
@@ -81,20 +82,17 @@ export const subCategoryContent: Record<string, Record<string, ContentConfig>> =
     background: {
       type: "paragraph",
       title: "Background",
-      body:
-        "I hold a BSc (Hons) in Computer Games Technology and I have completed a Software Development Bootcamp with Tech Educators. My experience includes leading development on an MMORPG and Looter Arena game, implementing AI and gameplay systems in Unreal Engine, and delivering full stack features for web platforms.",
+      body: "I hold a BSc (Hons) in Computer Games Technology and I have completed a Software Development Bootcamp with Tech Educators. My experience includes leading development on an MMORPG and Looter Arena game, implementing AI and gameplay systems in Unreal Engine, and delivering full stack features for web platforms.",
     },
     "how-i-work": {
       type: "paragraph",
       title: "How I Work",
-      body:
-        "I'm detail‑oriented, direct, and focused on building systems that are robust, scalable, and easy to maintain. I avoid unnecessary complexity, keep logic modular, and iterate until everything feels solid. I'm comfortable taking ownership of features, mentoring teammates, and driving projects forward.",
+      body: "I'm detail‑oriented, direct, and focused on building systems that are robust, scalable, and easy to maintain. I avoid unnecessary complexity, keep logic modular, and iterate until everything feels solid. I'm comfortable taking ownership of features, mentoring teammates, and driving projects forward.",
     },
     "outside-of-work": {
       type: "paragraph",
       title: "Outside of Work",
-      body:
-        "Outside of development, I'm usually experimenting with new tools, refining gameplay prototypes, or learning new technologies that push my projects and skillset forward.",
+      body: "Outside of development, I'm usually experimenting with new tools, refining gameplay prototypes, or learning new technologies that push my projects and skillset forward.",
     },
   },
   contact: {
