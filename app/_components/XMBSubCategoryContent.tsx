@@ -84,7 +84,7 @@ export default function XMBSubCategoryContent({
     <>
       <div
         ref={contentRef}
-        className={`absolute left-[18%] ${selectedIcon === "projects" ? "w-[1000px]" : "w-[600px]"} ${selectedIcon === "projects" ? "max-h-128" : "max-h-96"} overflow-y-auto transition-opacity duration-500 opacity-100 top-96`}
+        className={`shrink-0 min-w-0 mt-28 -ml-24 ${selectedIcon === "projects" ? "w-full max-w-[min(1000px,45vw)]" : "w-full max-w-[min(600px,35vw)]"} ${selectedIcon === "projects" ? "max-h-128" : "max-h-96"} overflow-y-auto transition-opacity duration-500 opacity-100`}
       >
         <div className="bg-card/30 backdrop-blur-sm border border-border rounded-xl p-6">
           {renderContent()}

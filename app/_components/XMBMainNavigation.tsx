@@ -110,7 +110,7 @@ export default function XMBMainNavigation({
   return (
     <>
       {/* Main Navigation - XMB Style */}
-      <div className="relative" style={{ margin: "14% 0 0 5%" }}>
+      <div className="relative flex-shrink-0">
         <div ref={rowRef} className="flex gap-20 items-center w-fit">
           {/* Home Icon */}
           <XMBMainCategory

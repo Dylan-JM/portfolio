@@ -111,7 +111,7 @@ export default function XMBNavigation() {
 
       <div
         ref={containerRef}
-        className="fixed top-0 left-0 right-0 z-50 h-64"
+        className="fixed top-0 left-0 z-50 flex flex-row items-start gap-1 pt-[14%] pl-[5%]"
         onKeyDown={handleKeyDown}
         tabIndex={0}
       >
@@ -122,13 +122,11 @@ export default function XMBNavigation() {
           onIconClick={handleIconClick}
           onSubItemClick={handleSubItemClick}
         />
+        <XMBSubCategoryContent
+          selectedIcon={selectedIcon}
+          selectedSubItem={selectedSubItem}
+        />
       </div>
-
-      {/* Content Display - Only Sub-Content */}
-      <XMBSubCategoryContent
-        selectedIcon={selectedIcon}
-        selectedSubItem={selectedSubItem}
-      />
     </>
   );
 }
