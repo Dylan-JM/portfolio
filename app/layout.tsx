@@ -1,7 +1,7 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Header from "@/app/_components/Header";
-import Footer from "@/app/_components/Footer";
+import XMBNavigation from "@/app/_components/XMBNavigation";
+import PS3Background from "@/app/_components/PS3Background";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -47,12 +47,13 @@ export default function RootLayout({
     ${geistSans.variable}
     ${geistMono.variable}
     antialiased
-    bg-slate-950 text-slate-200
+    bg-background text-foreground
+    dark
   `}
       >
-        <Header />
+        <PS3Background />
+        
         {children}
-        <Footer />
       </body>
     </html>
   );
