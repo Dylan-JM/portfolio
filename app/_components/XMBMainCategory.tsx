@@ -63,40 +63,33 @@ const XMBMainCategory = forwardRef<HTMLDivElement, XMBMainCategoryProps>(
     }, [isSelected]);
 
     useEffect(() => {
-      // True PS3-style scrolling based on original implementation
+      // Entire list moves up/down together as one unit
       if (isSelected && selectedSubItem) {
         const selectedIndex = categorySubItems.findIndex((item: SubCategoryItem) => item.id === selectedSubItem);
         
         if (selectedIndex !== -1) {
+          const scrollOffset = -80 * selectedIndex; // Entire list moves up/down based on selection
+          
           categorySubItems.forEach((subItem: SubCategoryItem, index: number) => {
             const element = subItemRefs.current[index];
             if (element) {
               if (index === selectedIndex) {
-                // Selected item - active state (like submenu.two.active)
+                // Selected item - active state, stays at its moved position
                 gsap.fromTo(element, {
-                  scale: 0.7,
-                  y: 0,
+                  scale: 1.0,
+                  y: scrollOffset, // Starts from scrolled position
                 }, {
                   scale: 1.0,
-                  y: 0,
+                  y: scrollOffset, // Stays at the moved position, not main category level
                   duration: 0.25,
                   ease: "power2.out"
                 });
-              } else if (index < selectedIndex) {
-                // Items above selected - inactive state (like submenu.one.inactive)
-                gsap.to(element, {
-                  scale: 0.7,
-                  opacity: 0.6,
-                  y: -250, // Move up significantly
-                  duration: 0.25,
-                  ease: "power2.in"
-                });
               } else {
-                // Items below selected - normal state
+                // All other items - move with the list as one unit
                 gsap.to(element, {
-                  scale: 0.7,
+                  scale: 1.0,
                   opacity: 0.6,
-                  y: 0,
+                  y: scrollOffset, // Move with the entire list
                   duration: 0.25,
                   ease: "power2.in"
                 });
@@ -176,17 +169,15 @@ const XMBMainCategory = forwardRef<HTMLDivElement, XMBMainCategoryProps>(
                   onClick={() => onSubItemClick(subItem.id)}
                 >
                   <div className="flex flex-col items-center">
-                    <div className="relative w-8 h-8">
+                    <div className="relative w-16 h-16">
                       <Image
                         src={subItem.icon}
                         alt={subItem.label}
                         fill
-                        className={`object-contain transition-all duration-300 ${
-                          selectedSubItem === subItem.id ? 'scale-110' : 'scale-100'
-                        }`}
+                        className="object-contain transition-all duration-300 scale-100"
                       />
                     </div>
-                    <span className="text-xs mt-1">{subItem.label}</span>
+                    <span className="text-sm mt-2">{subItem.label}</span>
                   </div>
                   {selectedSubItem === subItem.id && (
                     <div className={`absolute -bottom-2 left-0 right-0 h-0.5 ${color.selected.replace('text-', 'bg-')} rounded-full`} />
