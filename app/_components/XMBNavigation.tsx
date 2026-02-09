@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
@@ -11,6 +11,9 @@ import XMBMainNavigation from "./XMBMainNavigation";
 import { subCategories } from "@/app/_data/categories";
 
 gsap.registerPlugin(ScrollTrigger);
+
+const FOCUSABLE_INPUTS = ["INPUT", "TEXTAREA", "SELECT"];
+const icons = ["home", "projects", "contact"] as const;
 
 export default function XMBNavigation() {
   const [selectedIcon, setSelectedIcon] = useState("projects");
@@ -49,60 +52,79 @@ export default function XMBNavigation() {
     setSelectedSubItem(subItemId);
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
-    const icons = ["home", "projects", "contact"];
-    const currentIndex = icons.indexOf(selectedIcon);
+  const selectedIconRef = useRef(selectedIcon);
+  const selectedSubItemRef = useRef(selectedSubItem);
+  selectedIconRef.current = selectedIcon;
+  selectedSubItemRef.current = selectedSubItem;
 
-    switch (e.key) {
-      case "ArrowLeft":
-        e.preventDefault();
-        if (currentIndex > 0) {
-          handleIconClick(icons[currentIndex - 1]);
-        }
-        break;
-      case "ArrowRight":
-        e.preventDefault();
-        if (currentIndex < icons.length - 1) {
-          handleIconClick(icons[currentIndex + 1]);
-        }
-        break;
-      case "ArrowDown":
-        e.preventDefault();
-        if (
-          selectedIcon &&
-          subCategories[selectedIcon as keyof typeof subCategories]
-        ) {
-          const subItems =
-            subCategories[selectedIcon as keyof typeof subCategories];
-          const currentSubIndex = selectedSubItem
-            ? subItems.findIndex((item) => item.id === selectedSubItem)
-            : -1;
-          if (currentSubIndex < subItems.length - 1) {
-            handleSubItemClick(subItems[currentSubIndex + 1].id);
-          }
-        }
-        break;
-      case "ArrowUp":
-        e.preventDefault();
-        if (
-          selectedIcon &&
-          subCategories[selectedIcon as keyof typeof subCategories]
-        ) {
-          const subItems =
-            subCategories[selectedIcon as keyof typeof subCategories];
-          const currentSubIndex = selectedSubItem
-            ? subItems.findIndex((item) => item.id === selectedSubItem)
-            : subItems.length;
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      const target = e.target as HTMLElement;
+      if (
+        FOCUSABLE_INPUTS.includes(target.tagName) ||
+        target.isContentEditable
+      ) {
+        return;
+      }
 
-          if (currentSubIndex > 0) {
-            handleSubItemClick(subItems[currentSubIndex - 1].id);
-          } else {
-            setSelectedSubItem(null);
+      const currentSelectedIcon = selectedIconRef.current;
+      const currentSelectedSubItem = selectedSubItemRef.current;
+      const currentIndex = icons.indexOf(currentSelectedIcon as (typeof icons)[number]);
+
+      switch (e.key) {
+        case "ArrowLeft":
+          e.preventDefault();
+          if (currentIndex > 0) {
+            handleIconClick(icons[currentIndex - 1]);
           }
-        }
-        break;
-    }
-  };
+          break;
+        case "ArrowRight":
+          e.preventDefault();
+          if (currentIndex < icons.length - 1) {
+            handleIconClick(icons[currentIndex + 1]);
+          }
+          break;
+        case "ArrowDown":
+          e.preventDefault();
+          if (
+            currentSelectedIcon &&
+            subCategories[currentSelectedIcon as keyof typeof subCategories]
+          ) {
+            const subItems =
+              subCategories[currentSelectedIcon as keyof typeof subCategories];
+            const currentSubIndex = currentSelectedSubItem
+              ? subItems.findIndex((item) => item.id === currentSelectedSubItem)
+              : -1;
+            if (currentSubIndex < subItems.length - 1) {
+              handleSubItemClick(subItems[currentSubIndex + 1].id);
+            }
+          }
+          break;
+        case "ArrowUp":
+          e.preventDefault();
+          if (
+            currentSelectedIcon &&
+            subCategories[currentSelectedIcon as keyof typeof subCategories]
+          ) {
+            const subItems =
+              subCategories[currentSelectedIcon as keyof typeof subCategories];
+            const currentSubIndex = currentSelectedSubItem
+              ? subItems.findIndex((item) => item.id === currentSelectedSubItem)
+              : subItems.length;
+
+            if (currentSubIndex > 0) {
+              handleSubItemClick(subItems[currentSubIndex - 1].id);
+            } else {
+              setSelectedSubItem(null);
+            }
+          }
+          break;
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
   return (
     <>
       {/* Hidden Audio Element */}
@@ -113,8 +135,7 @@ export default function XMBNavigation() {
       <div
         ref={containerRef}
         className="fixed top-0 left-0 right-0 bottom-0 md:bottom-auto z-50 md:right-auto flex flex-col md:flex-row md:items-start md:gap-1 pt-16 md:pt-[14%] pl-0 md:pl-[5%] pr-0 outline-none focus:outline-none"
-        onKeyDown={handleKeyDown}
-        tabIndex={0}
+        tabIndex={-1}
       >
         {/* Mobile: scrollable main bar below system info */}
         <div className="md:hidden overflow-x-auto scrollbar-overlay shrink-0 border-b border-border/50 bg-background/80 backdrop-blur-sm">
