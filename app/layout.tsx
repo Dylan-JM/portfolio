@@ -1,7 +1,9 @@
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import XMBNavigation from "@/app/_components/XMBNavigation";
 import PS3Background from "@/app/_components/PS3Background";
+import { ThemeProvider } from "@/app/_providers/ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,6 +14,14 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
+
+const themeScript = `
+(function() {
+  const stored = localStorage.getItem('portfolio-theme');
+  const theme = stored === 'light' || stored === 'dark' ? stored : 'dark';
+  document.documentElement.classList.add(theme);
+})();
+`;
 
 export const metadata = {
   title: "Dylan Marley - Portfolio",
@@ -41,19 +51,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
-        className={`
-    ${geistSans.variable}
-    ${geistMono.variable}
-    antialiased
-    bg-background text-foreground
-    dark
-  `}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased bg-background text-foreground`}
       >
-        <PS3Background />
-        
-        {children}
+        <Script
+          id="theme-init"
+          strategy="beforeInteractive"
+          dangerouslySetInnerHTML={{ __html: themeScript }}
+        />
+        <ThemeProvider>
+          <PS3Background />
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

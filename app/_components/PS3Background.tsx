@@ -8,51 +8,11 @@ import { Meteors } from '@/components/ui/meteors';
 const PARTICLE_COUNT = 80;
 
 const WAVE_LAYERS = [
-  {
-    fill: 'rgba(30, 58, 95, 0.22)',
-    height: 24,
-    amplitude: 28,
-    speed: 0.08,
-    points: 4,
-    opacity: 0.28,
-    top: '35%',
-  },
-  {
-    fill: 'rgba(75, 42, 107, 0.2)',
-    height: 20,
-    amplitude: 22,
-    speed: 0.12,
-    points: 5,
-    opacity: 0.25,
-    top: '42%',
-  },
-  {
-    fill: 'rgba(92, 74, 155, 0.26)',
-    height: 28,
-    amplitude: 32,
-    speed: 0.06,
-    points: 6,
-    opacity: 0.32,
-    top: '48%',
-  },
-  {
-    fill: 'rgba(107, 90, 186, 0.18)',
-    height: 18,
-    amplitude: 20,
-    speed: 0.1,
-    points: 4,
-    opacity: 0.2,
-    top: '55%',
-  },
-  {
-    fill: 'rgba(74, 53, 133, 0.3)',
-    height: 22,
-    amplitude: 26,
-    speed: 0.07,
-    points: 5,
-    opacity: 0.35,
-    top: '62%',
-  },
+  { fillVar: '--ps3-wave-fill-1', opacityVar: '--ps3-wave-opacity-1', height: 24, amplitude: 28, speed: 0.08, points: 4, top: '35%' },
+  { fillVar: '--ps3-wave-fill-2', opacityVar: '--ps3-wave-opacity-2', height: 20, amplitude: 22, speed: 0.12, points: 5, top: '42%' },
+  { fillVar: '--ps3-wave-fill-3', opacityVar: '--ps3-wave-opacity-3', height: 28, amplitude: 32, speed: 0.06, points: 6, top: '48%' },
+  { fillVar: '--ps3-wave-fill-4', opacityVar: '--ps3-wave-opacity-4', height: 18, amplitude: 20, speed: 0.1, points: 4, top: '55%' },
+  { fillVar: '--ps3-wave-fill-5', opacityVar: '--ps3-wave-opacity-5', height: 22, amplitude: 26, speed: 0.07, points: 5, top: '62%' },
 ];
 
 export default function PS3Background() {
@@ -93,19 +53,21 @@ export default function PS3Background() {
       aria-hidden
     >
       <div
-        className="absolute inset-0 animate-gradient-shift"
-        style={{
-          background:
-            'linear-gradient(135deg, #0a0a0c 0%, #0f0a12 25%, #1a0f1e 50%, #1e0a14 75%, #2a0a12 100%)',
-        }}
+        className="absolute inset-0 animate-gradient-shift transition-[background] duration-400 ease-out"
+        style={{ background: 'var(--ps3-bg-gradient)' }}
       />
-      <Meteors
-        number={12}
-        minDuration={4}
-        maxDuration={12}
-        angle={200}
-        className="opacity-35"
-      />
+      <div
+        className="absolute inset-0 pointer-events-none transition-opacity duration-400 ease-out"
+        style={{ opacity: 'var(--ps3-meteor-opacity)' }}
+      >
+        <Meteors
+          number={12}
+          minDuration={4}
+          maxDuration={12}
+          angle={200}
+          className="absolute inset-0"
+        />
+      </div>
       <div className="absolute inset-0 w-full h-full pointer-events-none">
         {WAVE_LAYERS.map((layer, i) => (
           <div
@@ -118,7 +80,7 @@ export default function PS3Background() {
             }}
           >
             <Wave
-              fill={layer.fill}
+              fill={`var(${layer.fillVar})`}
               paused={false}
               options={{
                 height: layer.height,
@@ -127,9 +89,10 @@ export default function PS3Background() {
                 points: layer.points,
               }}
               style={{
-                opacity: layer.opacity,
+                opacity: `var(${layer.opacityVar})`,
                 width: '100%',
                 height: '100%',
+                transition: 'opacity 0.4s ease-out',
               }}
               className="w-full h-full"
             />
@@ -146,7 +109,7 @@ export default function PS3Background() {
             <feGaussianBlur stdDeviation="1" />
           </filter>
         </defs>
-        <g fill="#f5e6c8" opacity={0.6}>
+        <g fill="var(--ps3-particle-colour)" opacity={0.6} style={{ transition: 'fill 0.4s ease-out' }}>
           {particles.map((p, i) => (
             <circle
               key={p.id}
@@ -161,10 +124,9 @@ export default function PS3Background() {
         </g>
       </svg>
       <div
-        className="absolute inset-0 animate-gradient-shift pointer-events-none"
+        className="absolute inset-0 animate-gradient-shift pointer-events-none transition-[background] duration-400 ease-out"
         style={{
-          background:
-            'linear-gradient(to bottom, transparent 0%, transparent 60%, rgba(40,10,15,0.15) 100%)',
+          background: 'var(--ps3-bg-overlay)',
           animationDelay: '-6s',
         }}
       />

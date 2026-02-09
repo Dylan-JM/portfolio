@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import ThemeToggle from "./ThemeToggle";
 
 export default function XMBSystemInfo() {
   const [time, setTime] = useState(new Date());
@@ -34,7 +35,8 @@ export default function XMBSystemInfo() {
   };
 
   return (
-    <div className="fixed top-8 right-8 z-[100]">
+    <div className="fixed top-8 right-8 z-[100] flex items-start gap-2">
+      <ThemeToggle />
       <div
         className="text-right text-foreground/80 cursor-pointer select-none rounded-lg border border-transparent hover:border-foreground/20 hover:bg-foreground/5 transition-colors p-2 -m-2"
         onClick={() => setIsExpanded(!isExpanded)}
