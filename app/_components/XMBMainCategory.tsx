@@ -1,6 +1,7 @@
 'use client';
 
-import { forwardRef, useEffect, useRef, useMemo } from 'react';
+import { forwardRef, useEffect, useMemo, useRef } from 'react';
+import type { MutableRefObject } from 'react';
 import gsap from 'gsap';
 import Image from 'next/image';
 
@@ -39,11 +40,19 @@ const XMBMainCategory = forwardRef<HTMLDivElement, XMBMainCategoryProps>(
     const subItemRefs = useRef<(HTMLDivElement | null)[]>([]);
     const mainCategoryRef = useRef<HTMLDivElement>(null);
 
+    const setMainRef = (node: HTMLDivElement | null) => {
+      mainCategoryRef.current = node;
+      if (typeof ref === 'function') {
+        ref(node);
+      } else if (ref) {
+        (ref as MutableRefObject<HTMLDivElement | null>).current = node;
+      }
+    };
+
     useEffect(() => {
       // Animate main category when selection changes
       const element = mainCategoryRef.current;
       if (element) {
-        console.log('Animating main category:', isSelected, element);
         if (isSelected) {
           gsap.fromTo(element, {
             scale: 1,
@@ -112,10 +121,9 @@ const XMBMainCategory = forwardRef<HTMLDivElement, XMBMainCategoryProps>(
     }, [isSelected, categorySubItems.length]);
 
     return (
-      <div className="relative">
+      <div ref={setMainRef} className="relative">
         {/* Main Category */}
         <div
-          ref={mainCategoryRef}
           className={`relative cursor-pointer ${
             isSelected 
               ? color.selected 
