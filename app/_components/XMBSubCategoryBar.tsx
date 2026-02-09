@@ -26,7 +26,8 @@ export default function XMBSubCategoryBar({
   subCategories,
   onSubItemClick,
 }: XMBSubCategoryBarProps) {
-  const subItems = subCategories[selectedIcon as keyof typeof subCategories] ?? [];
+  const subItems =
+    subCategories[selectedIcon as keyof typeof subCategories] ?? [];
 
   if (subItems.length === 0) return null;
 

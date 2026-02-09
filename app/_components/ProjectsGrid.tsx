@@ -8,7 +8,7 @@ type Props = {
 
 export function ProjectsGrid({ projects, onProjectClick }: Props) {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-h-96 overflow-y-auto pr-2">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-h-96 overflow-y-auto scrollbar-overlay pr-2">
       {projects.map((project) => (
         <ProjectCard key={project.title} project={project} onProjectClick={onProjectClick} />
       ))}

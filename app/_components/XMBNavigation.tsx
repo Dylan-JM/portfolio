@@ -117,7 +117,7 @@ export default function XMBNavigation() {
         tabIndex={0}
       >
         {/* Mobile: scrollable main bar below system info */}
-        <div className="md:hidden overflow-x-auto shrink-0 border-b border-border/50 bg-background/80 backdrop-blur-sm">
+        <div className="md:hidden overflow-x-auto scrollbar-overlay shrink-0 border-b border-border/50 bg-background/80 backdrop-blur-sm">
           <div className="flex gap-6 px-4 py-3 w-fit min-w-full justify-center">
             <XMBMainNavigation
               selectedIcon={selectedIcon}

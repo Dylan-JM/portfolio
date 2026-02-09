@@ -83,7 +83,7 @@ export default function ProjectDetailModal({ project, isOpen, onClose }: Project
         className="bg-card/50 backdrop-blur-md border border-border rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl"
       >
         {/* Scrollable content */}
-        <div className="overflow-y-auto max-h-[90vh] p-8 space-y-6">
+        <div className="overflow-y-auto scrollbar-overlay max-h-[90vh] p-8 space-y-6">
           {/* Header */}
           <div className="flex justify-between items-start">
             <h1 className="text-3xl font-bold text-foreground">{project.title}</h1>

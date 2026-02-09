@@ -261,3 +261,31 @@ body {
 .ps3-glow-purple {
   box-shadow: 0 0 20px rgba(168, 85, 247, 0.3);
 }
+
+/* Overlay-style scrollbars: minimal/invisible until hover, Firefox-like */
+.scrollbar-overlay {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+}
+.scrollbar-overlay:hover,
+.scrollbar-overlay:focus-within {
+  scrollbar-color: rgba(128, 128, 128, 0.5) transparent;
+}
+.scrollbar-overlay::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.scrollbar-overlay::-webkit-scrollbar-track {
+  background: transparent;
+}
+.scrollbar-overlay::-webkit-scrollbar-thumb {
+  background: transparent;
+  border-radius: 4px;
+}
+.scrollbar-overlay:hover::-webkit-scrollbar-thumb,
+.scrollbar-overlay:focus-within::-webkit-scrollbar-thumb {
+  background: rgba(128, 128, 128, 0.4);
+}
+.scrollbar-overlay::-webkit-scrollbar-thumb:hover {
+  background: rgba(128, 128, 128, 0.6);
+}
