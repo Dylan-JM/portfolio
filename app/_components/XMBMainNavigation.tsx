@@ -5,10 +5,19 @@ import gsap from 'gsap';
 import XMBMainCategory from './XMBMainCategory';
 import { mainCategoryIcons } from '@/app/_data/categories';
 
+interface SubCategories {
+  [key: string]: {
+    id: string;
+    label: string;
+    icon: string;
+    description: string;
+  }[];
+}
+
 interface XMBMainNavigationProps {
   selectedIcon: string;
   selectedSubItem: string | null;
-  subCategories: [];
+  subCategories: SubCategories;
   onIconClick: (iconId: string) => void;
   onSubItemClick: (subItemId: string) => void;
 }

@@ -4,13 +4,24 @@ import { forwardRef, useEffect, useRef, useMemo } from 'react';
 import gsap from 'gsap';
 import Image from 'next/image';
 
+interface SubCategoryItem {
+  id: string;
+  label: string;
+  icon: string;
+  description: string;
+}
+
+interface SubCategories {
+  [key: string]: SubCategoryItem[];
+}
+
 interface XMBMainCategoryProps {
   icon: string;
   label: string;
   categoryId: string;
   isSelected: boolean;
   selectedSubItem: string | null;
-  subCategories: any;
+  subCategories: SubCategories;
   color: {
     selected: string;
     hover: string;
@@ -52,28 +63,63 @@ const XMBMainCategory = forwardRef<HTMLDivElement, XMBMainCategoryProps>(
     }, [isSelected]);
 
     useEffect(() => {
-      // Animate sub-items when selection changes
-      categorySubItems.forEach((subItem: any, index: number) => {
-        const element = subItemRefs.current[index];
-        if (element) {
-          if (selectedSubItem === subItem.id) {
-            gsap.fromTo(element, {
-              scale: 1,
-            }, {
-              scale: 1.2,
-              duration: 0.3,
-              ease: "back.out(1.7)"
-            });
-          } else {
+      // True PS3-style scrolling based on original implementation
+      if (isSelected && selectedSubItem) {
+        const selectedIndex = categorySubItems.findIndex((item: SubCategoryItem) => item.id === selectedSubItem);
+        
+        if (selectedIndex !== -1) {
+          categorySubItems.forEach((subItem: SubCategoryItem, index: number) => {
+            const element = subItemRefs.current[index];
+            if (element) {
+              if (index === selectedIndex) {
+                // Selected item - active state (like submenu.two.active)
+                gsap.fromTo(element, {
+                  scale: 0.7,
+                  y: 0,
+                }, {
+                  scale: 1.0,
+                  y: 0,
+                  duration: 0.25,
+                  ease: "power2.out"
+                });
+              } else if (index < selectedIndex) {
+                // Items above selected - inactive state (like submenu.one.inactive)
+                gsap.to(element, {
+                  scale: 0.7,
+                  opacity: 0.6,
+                  y: -250, // Move up significantly
+                  duration: 0.25,
+                  ease: "power2.in"
+                });
+              } else {
+                // Items below selected - normal state
+                gsap.to(element, {
+                  scale: 0.7,
+                  opacity: 0.6,
+                  y: 0,
+                  duration: 0.25,
+                  ease: "power2.in"
+                });
+              }
+            }
+          });
+        }
+      } else if (!isSelected) {
+        // Reset all items when deselected
+        categorySubItems.forEach((subItem: SubCategoryItem, index: number) => {
+          const element = subItemRefs.current[index];
+          if (element) {
             gsap.to(element, {
               scale: 1,
-              duration: 0.2,
+              opacity: 1,
+              y: 0,
+              duration: 0.25,
               ease: "power2.in"
             });
           }
-        }
-      });
-    }, [selectedSubItem, categorySubItems]);
+        });
+      }
+    }, [selectedSubItem, categorySubItems, isSelected]);
 
     useEffect(() => {
       // Animate sub-items when they appear
