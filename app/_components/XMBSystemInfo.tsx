@@ -69,31 +69,60 @@ export default function XMBSystemInfo() {
         </div>
 
         {/* Expanded content */}
-        {isExpanded && (
-          <div className="mt-3 pt-3 border-t border-foreground/10 space-y-2 opacity-100 transition-opacity duration-200">
-            <div className="flex items-center justify-end gap-2">
-              <span className="text-xs opacity-70">Achievements</span>
-              <div className="relative w-6 h-6">
-                <Image
-                  src="/icons/achievement-list.png"
-                  alt="Achievements"
-                  fill
-                  className="object-contain"
-                />
+        <div
+          className="grid transition-[grid-template-rows] duration-300 ease-out"
+          style={{
+            gridTemplateRows: isExpanded ? "1fr" : "0fr",
+            transitionDelay: isExpanded ? "150ms" : "0ms",
+          }}
+        >
+          <div className="overflow-hidden min-h-0">
+            <div className="mt-3 pt-3 space-y-3 min-w-0">
+              <div
+                className="relative h-px -mt-px -mx-3 mb-3 bg-foreground/10 origin-left transition-[transform] duration-200 ease-out"
+                style={{
+                  transform: isExpanded ? "scaleX(1)" : "scaleX(0)",
+                  transitionDelay: isExpanded ? "0ms" : "200ms",
+                }}
+                aria-hidden
+              />
+              <div className="flex items-center justify-end gap-4">
+                <div className="relative size-16 shrink-0 rounded-full overflow-hidden border-2 border-foreground/20">
+                  <Image
+                    src="/Graduate Picture.jpg"
+                    alt="Dylan Marley"
+                    fill
+                    className="object-cover"
+                    sizes="64px"
+                  />
+                </div>
+                <div className="flex flex-col items-end gap-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs opacity-70">Achievements</span>
+                    <div className="relative w-5 h-5 shrink-0">
+                      <Image
+                        src="/icons/achievement-list.png"
+                        alt="Achievements"
+                        fill
+                        className="object-contain"
+                      />
+                    </div>
+                    <span className="text-sm font-medium">{achievementsCount}</span>
+                  </div>
+                  <Link
+                    href="/Dylan_Marley_CV_SE.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-blue-500 hover:text-blue-400 hover:underline"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    View CV
+                  </Link>
+                </div>
               </div>
-              <span className="text-sm font-medium">{achievementsCount}</span>
             </div>
-            <Link
-              href="/Dylan_Marley_CV_SE.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block text-sm text-blue-500 hover:text-blue-400 hover:underline text-right"
-              onClick={(e) => e.stopPropagation()}
-            >
-              View CV
-            </Link>
           </div>
-        )}
+        </div>
       </div>
     </div>
   );
