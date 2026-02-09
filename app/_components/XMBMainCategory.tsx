@@ -128,7 +128,7 @@ const XMBMainCategory = forwardRef<HTMLDivElement, XMBMainCategoryProps>(
         {/* Scrolled Items - positioned absolutely above main icon */}
         {isSelected && selectedSubItem && (
           <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 mb-4">
-            <div className="flex flex-col-reverse space-y-reverse space-y-2">
+            <div className="flex flex-col space-y-2">
               {categorySubItems.map((subItem: SubCategoryItem, index: number) => {
                 const selectedIndex = categorySubItems.findIndex((item: SubCategoryItem) => item.id === selectedSubItem);
                 if (index < selectedIndex) {
