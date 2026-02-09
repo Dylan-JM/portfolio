@@ -112,7 +112,7 @@ export default function XMBNavigation() {
 
       <div
         ref={containerRef}
-        className="fixed top-0 left-0 right-0 bottom-0 md:bottom-auto z-50 md:right-auto flex flex-col md:flex-row md:items-start md:gap-1 pt-16 md:pt-[14%] pl-0 md:pl-[5%] pr-0"
+        className="fixed top-0 left-0 right-0 bottom-0 md:bottom-auto z-50 md:right-auto flex flex-col md:flex-row md:items-start md:gap-1 pt-16 md:pt-[14%] pl-0 md:pl-[5%] pr-0 outline-none focus:outline-none"
         onKeyDown={handleKeyDown}
         tabIndex={0}
       >

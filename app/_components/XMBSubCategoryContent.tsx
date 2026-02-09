@@ -84,7 +84,7 @@ export default function XMBSubCategoryContent({
     <>
       <div
         ref={contentRef}
-        className={`shrink-0 min-w-0 md:mt-28 md:-ml-24 px-2 md:px-0 ${selectedIcon === "projects" ? "w-full max-w-full md:max-w-[min(1000px,45vw)]" : "w-full max-w-full md:max-w-[min(600px,35vw)]"} ${selectedIcon === "projects" ? "max-h-full md:max-h-128" : "max-h-full md:max-h-96"} overflow-y-auto transition-opacity duration-500 opacity-100`}
+        className={`shrink-0 min-w-0 md:mt-28 md:-ml-24 px-2 md:px-0 outline-none focus:outline-none focus-visible:outline-none ${selectedIcon === "projects" ? "w-full max-w-full md:max-w-[min(1000px,45vw)]" : "w-full max-w-full md:max-w-[min(600px,35vw)]"} ${selectedIcon === "projects" ? "max-h-full md:max-h-128" : "max-h-full md:max-h-96"} overflow-y-auto transition-opacity duration-500 opacity-100`}
       >
         <div className="bg-card/30 backdrop-blur-sm border border-border rounded-xl p-6">
           {renderContent()}
