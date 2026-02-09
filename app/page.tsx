@@ -2,8 +2,8 @@ import XMBNavigation from "./_components/XMBNavigation";
 
 export default function HomePage() {
   return (
-    <main>
+    <div>
       <XMBNavigation />
-    </main>
+    </div>
   );
 }
