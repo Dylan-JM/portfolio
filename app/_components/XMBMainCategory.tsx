@@ -159,7 +159,16 @@ const XMBMainCategory = forwardRef<HTMLDivElement, XMBMainCategoryProps>(
                       ref={(el) => {
                         subItemRefs.current[index] = el;
                       }}
-                      className="relative cursor-pointer scale-100 text-foreground opacity-60"
+                      role="button"
+                      tabIndex={0}
+                      className="relative cursor-pointer scale-100 text-foreground opacity-60 hover:opacity-100 transition-opacity"
+                      onClick={() => onSubItemClick(subItem.id)}
+                      onKeyDown={(e) => {
+                        if (e.key === 'Enter' || e.key === ' ') {
+                          e.preventDefault();
+                          onSubItemClick(subItem.id);
+                        }
+                      }}
                     >
                       <div className="flex flex-col items-center">
                         <div className="relative w-12 h-12">
