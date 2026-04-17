@@ -134,8 +134,8 @@ export const subCategoryContent: Record<
         {
           icon: "linkedin",
           label: "LinkedIn",
-          href: "https://linkedin.com/in/dylan-marley-a439bb1b8",
-          text: "linkedin.com/in/dylan-marley-a439bb1b8",
+          href: "https://linkedin.com/in/dylan-marley",
+          text: "linkedin.com/in/dylan-marley",
         },
       ],
     },

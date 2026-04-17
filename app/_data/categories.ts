@@ -88,7 +88,7 @@ export const subCategories = {
       id: "linkedin",
       label: "LinkedIn",
       icon: "/icons/Unofficial - Video Game Magazine Scans.png",
-      description: "linkedin.com/in/dylan-marley-a439bb1b8",
+      description: "linkedin.com/in/dylan-marley",
     },
   ],
 };
