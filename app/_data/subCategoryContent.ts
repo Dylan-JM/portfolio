@@ -48,9 +48,10 @@ export const subCategoryContent: Record<
           title: "Full Stack Development",
           items: [
             "Next.js, TypeScript, Express, React",
+            "ASP.NET Core MVC, C#, Entity Framework Core",
             "REST APIs & backend architecture",
-            "MySQL, PostgreSQL, DynamoDB",
-            "AWS (Cognito, Lambda, cloud services)",
+            "MySQL, PostgreSQL, SQL Server, DynamoDB",
+            "AWS (Cognito, Lambda, cloud services), Azure",
           ],
         },
         {
@@ -77,7 +78,8 @@ export const subCategoryContent: Record<
         "Unreal Engine 5 — C++, AI, Mass framework, gameplay systems",
         "Multiplayer systems, replication, and cloud-backed services",
         "React, Next.js, Express, REST APIs, full stack web development",
-        "SQL (MySQL, PostgreSQL) and AWS (DynamoDB, Cognito)",
+        "ASP.NET Core MVC, C#, Entity Framework Core, role-based access control",
+        "SQL (MySQL, PostgreSQL, SQL Server), AWS (DynamoDB, Cognito), Azure",
         "Scalable architecture, debugging, and performance-focused development",
       ],
     },
