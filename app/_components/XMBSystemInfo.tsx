@@ -89,10 +89,11 @@ export default function XMBSystemInfo() {
               <div className="flex items-center justify-end gap-4">
                 <div className="relative size-16 shrink-0 rounded-full overflow-hidden border-2 border-foreground/20">
                   <Image
-                    src="/Graduate Picture.jpg"
+                    src="/ProfileImg.png"
                     alt="Dylan Marley"
                     fill
                     className="object-cover"
+                    style={{ transform: "scale(1.3) translate(5%, -10%)" }}
                     sizes="64px"
                   />
                 </div>
@@ -107,7 +108,9 @@ export default function XMBSystemInfo() {
                         className="object-contain"
                       />
                     </div>
-                    <span className="text-sm font-medium">{achievementsCount}</span>
+                    <span className="text-sm font-medium">
+                      {achievementsCount}
+                    </span>
                   </div>
                   <Link
                     href="/Dylan_Marley_CV_SE.pdf"
