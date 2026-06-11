@@ -18,7 +18,7 @@ const icons = ["home", "projects", "contact"] as const;
 export default function XMBNavigation() {
   const [selectedIcon, setSelectedIcon] = useState("projects");
   const [selectedSubItem, setSelectedSubItem] = useState<string | null>(
-    "startup",
+    "web",
   );
   const containerRef = useRef<HTMLDivElement>(null);
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -41,7 +41,7 @@ export default function XMBNavigation() {
     if (iconId === "home") {
       setSelectedSubItem("about"); // First sub-category
     } else if (iconId === "projects") {
-      setSelectedSubItem("startup"); // First sub-category
+      setSelectedSubItem("web"); // First sub-category
     } else if (iconId === "contact") {
       setSelectedSubItem("email"); // First sub-category
     }
