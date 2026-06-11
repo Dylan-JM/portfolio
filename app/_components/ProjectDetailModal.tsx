@@ -75,15 +75,15 @@ export default function ProjectDetailModal({ project, isOpen, onClose }: Project
   return (
     <div
       ref={modalRef}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+      className="fixed inset-0 z-50 flex items-start xl:items-center justify-center p-4 pt-24 xl:pt-4 bg-black/80 backdrop-blur-sm"
       onClick={handleBackdropClick}
     >
       <div
         ref={contentRef}
-        className="bg-card/50 backdrop-blur-md border border-border rounded-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden shadow-2xl"
+        className="bg-card/50 backdrop-blur-md border border-border rounded-2xl max-w-4xl w-full max-h-[calc(90vh-5rem)] xl:max-h-[90vh] overflow-hidden shadow-2xl"
       >
         {/* Scrollable content */}
-        <div className="overflow-y-auto scrollbar-overlay max-h-[90vh] p-8 space-y-6">
+        <div className="overflow-y-auto scrollbar-overlay max-h-[calc(90vh-5rem)] xl:max-h-[90vh] p-8 space-y-6">
           {/* Header */}
           <div className="flex justify-between items-start">
             <h1 className="text-3xl font-bold text-foreground">{project.title}</h1>
