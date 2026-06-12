@@ -31,19 +31,28 @@ function applyTheme(theme: Theme) {
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>(() => getStoredTheme());
+  // Always start with 'dark' to match the server render, then sync on mount.
+  // The inline script in layout.tsx already applied the correct class before
+  // React hydrates, so we don't call applyTheme here — just align React state.
+  const [theme, setThemeState] = useState<Theme>('dark');
 
   useEffect(() => {
-    applyTheme(theme);
-    localStorage.setItem(STORAGE_KEY, theme);
-  }, [theme]);
+    setThemeState(getStoredTheme());
+  }, []);
 
   const setTheme = useCallback((next: Theme) => {
     setThemeState(next);
+    applyTheme(next);
+    localStorage.setItem(STORAGE_KEY, next);
   }, []);
 
   const toggleTheme = useCallback(() => {
-    setThemeState((prev) => (prev === 'dark' ? 'light' : 'dark'));
+    setThemeState((prev) => {
+      const next = prev === 'dark' ? 'light' : 'dark';
+      applyTheme(next);
+      localStorage.setItem(STORAGE_KEY, next);
+      return next;
+    });
   }, []);
 
   return (

@@ -71,6 +71,14 @@ export const subCategories = {
       description: "Interactive games and game development tools",
     },
   ],
+  chat: [
+    {
+      id: "dylanbot",
+      label: "DylanBot",
+      icon: "/icons/menu_user.png",
+      description: "Chat with Dylan's AI assistant",
+    },
+  ],
   contact: [
     {
       id: "email",
@@ -98,6 +106,7 @@ export const mainCategoryIcons = {
   home: "/icons/menu_quickmenu.png",
   projects: "/icons/movie.png",
   contact: "/icons/core-infos.png",
+  chat: "/icons/menu_user.png",
 };
 
 // Group projects by category

@@ -13,7 +13,7 @@ import { subCategories } from "@/app/_data/categories";
 gsap.registerPlugin(ScrollTrigger);
 
 const FOCUSABLE_INPUTS = ["INPUT", "TEXTAREA", "SELECT"];
-const icons = ["home", "projects", "contact"] as const;
+const icons = ["home", "projects", "contact", "chat"] as const;
 
 export default function XMBNavigation() {
   const [selectedIcon, setSelectedIcon] = useState("projects");
@@ -44,6 +44,8 @@ export default function XMBNavigation() {
       setSelectedSubItem("web"); // First sub-category
     } else if (iconId === "contact") {
       setSelectedSubItem("email"); // First sub-category
+    } else if (iconId === "chat") {
+      setSelectedSubItem("dylanbot");
     }
   };
 

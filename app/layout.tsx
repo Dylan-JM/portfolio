@@ -3,6 +3,7 @@ import Script from "next/script";
 import "./globals.css";
 import XMBNavigation from "@/app/_components/XMBNavigation";
 import PS3Background from "@/app/_components/PS3Background";
+import DylanbotWidget from "@/app/_components/DylanbotWidget";
 import { ThemeProvider } from "@/app/_providers/ThemeProvider";
 
 const geistSans = Geist({
@@ -63,6 +64,7 @@ export default function RootLayout({
         <ThemeProvider>
           <PS3Background />
           {children}
+          <DylanbotWidget />
         </ThemeProvider>
       </body>
     </html>

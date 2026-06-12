@@ -35,6 +35,7 @@ export default function XMBSubCategoryBar({
     home: { selected: "text-blue-500", hover: "text-blue-500/70" },
     projects: { selected: "text-pink-500", hover: "text-pink-500/70" },
     contact: { selected: "text-purple-600", hover: "text-purple-600/70" },
+    chat: { selected: "text-teal-500", hover: "text-teal-500/70" },
   };
   const color = colorMap[selectedIcon] ?? {
     selected: "text-foreground",

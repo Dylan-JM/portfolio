@@ -5,7 +5,7 @@ import gsap from "gsap";
 import XMBMainCategory from "./XMBMainCategory";
 import { mainCategoryIcons } from "@/app/_data/categories";
 
-const iconOrder = ["home", "projects", "contact"] as const;
+const iconOrder = ["home", "projects", "contact", "chat"] as const;
 
 interface SubCategories {
   [key: string]: {
@@ -65,13 +65,21 @@ export default function XMBMainNavigation({
   }, []);
 
   const updateRowPosition = useCallback(() => {
+    if (!rowRef.current) return;
+
+    // On mobile the container scrolls natively — don't translate the row
+    if (window.innerWidth < 768) {
+      gsap.set(rowRef.current, { x: 0 });
+      return;
+    }
+
     const selectedIndex = iconOrder.indexOf(
       selectedIcon as (typeof iconOrder)[number],
     );
     const spacingReady = ensureSpacing();
     const spacing = spacingRef.current;
 
-    if (!rowRef.current || !spacingReady || spacing === 0) return;
+    if (!spacingReady || spacing === 0) return;
 
     const deltaX = (anchorIndexRef.current - selectedIndex) * spacing;
     gsap.to(rowRef.current, {
@@ -79,7 +87,7 @@ export default function XMBMainNavigation({
       duration: 0.4,
       ease: "power2.out",
     });
-  }, [selectedIcon]);
+  }, [selectedIcon, ensureSpacing]);
 
   useLayoutEffect(() => {
     if (didInitRef.current) return;
@@ -110,7 +118,7 @@ export default function XMBMainNavigation({
   return (
     <>
       {/* Main Navigation - XMB Style */}
-      <div className="relative flex-shrink-0">
+      <div className="relative shrink-0">
         <div ref={rowRef} className="flex gap-20 items-center w-fit">
           {/* Home Icon */}
           <XMBMainCategory
@@ -166,6 +174,25 @@ export default function XMBMainNavigation({
               hover: "text-purple-600/70",
             }}
             onClick={() => onIconClick("contact")}
+            onSubItemClick={onSubItemClick}
+          />
+
+          {/* Chat Icon */}
+          <XMBMainCategory
+            ref={(el) => {
+              iconRefs.current[3] = el;
+            }}
+            icon={mainCategoryIcons.chat}
+            label="Chat"
+            categoryId="chat"
+            isSelected={selectedIcon === "chat"}
+            selectedSubItem={selectedSubItem}
+            subCategories={subCategories}
+            color={{
+              selected: "text-teal-500",
+              hover: "text-teal-500/70",
+            }}
+            onClick={() => onIconClick("chat")}
             onSubItemClick={onSubItemClick}
           />
         </div>

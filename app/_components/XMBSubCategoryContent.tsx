@@ -7,6 +7,7 @@ import { subCategoryContent } from "@/app/_data/subCategoryContent";
 import type { Project } from "@/app/_types/project";
 import ProjectDetailModal from "./ProjectDetailModal";
 import SubCategoryContentBlock from "./SubCategoryContentBlock";
+import ChatInterface from "./ChatInterface";
 
 interface XMBSubCategoryContentProps {
   selectedIcon: string;
@@ -43,6 +44,10 @@ export default function XMBSubCategoryContent({
 
   const renderContent = () => {
     if (!selectedIcon || !selectedSubItem) return null;
+
+    if (selectedIcon === "chat") {
+      return <ChatInterface />;
+    }
 
     // Projects: special handling with dynamic category data
     if (selectedIcon === "projects") {
@@ -84,9 +89,15 @@ export default function XMBSubCategoryContent({
     <>
       <div
         ref={contentRef}
-        className={`shrink-0 min-w-0 md:mt-28 md:-ml-24 px-2 md:px-0 outline-none focus:outline-none focus-visible:outline-none ${selectedIcon === "projects" ? "w-full max-w-full md:max-w-[min(1000px,45vw)]" : "w-full max-w-full md:max-w-[min(600px,35vw)]"} ${selectedIcon === "projects" ? "max-h-full md:max-h-128" : "max-h-full md:max-h-96"} overflow-y-auto scrollbar-overlay transition-opacity duration-500 opacity-100`}
+        className={`shrink-0 min-w-0 md:mt-28 md:-ml-24 px-2 md:px-0 outline-none focus:outline-none focus-visible:outline-none transition-opacity duration-500 opacity-100 ${
+          selectedIcon === "chat"
+            ? "w-full max-w-full"
+            : selectedIcon === "projects"
+            ? "w-full max-w-full md:max-w-[min(1000px,45vw)] max-h-full md:max-h-128 overflow-y-auto scrollbar-overlay"
+            : "w-full max-w-full md:max-w-[min(600px,35vw)] max-h-full md:max-h-96 overflow-y-auto scrollbar-overlay"
+        }`}
       >
-        <div className="bg-card/30 backdrop-blur-sm border border-border rounded-xl p-6">
+        <div className={`bg-card/30 backdrop-blur-sm border border-border rounded-xl ${selectedIcon === "chat" ? "overflow-hidden flex flex-col p-0 h-95" : "p-6"}`}>
           {renderContent()}
         </div>
       </div>
