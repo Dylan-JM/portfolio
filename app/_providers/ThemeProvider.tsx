@@ -37,7 +37,11 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<Theme>('dark');
 
   useEffect(() => {
-    setThemeState(getStoredTheme());
+    // React hydration removes the class added by the inline script in layout.tsx,
+    // so we re-apply it here immediately after mount.
+    const stored = getStoredTheme();
+    setThemeState(stored);
+    applyTheme(stored);
   }, []);
 
   const setTheme = useCallback((next: Theme) => {
