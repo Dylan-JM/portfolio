@@ -8,11 +8,13 @@ import ChatInterface from './ChatInterface';
 
 export default function DylanbotWidget() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isPanelMounted, setIsPanelMounted] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
+    // Start panel hidden
+    gsap.set(panelRef.current, { opacity: 0, scale: 0.92, y: 16, pointerEvents: 'none' });
+
     // Animate the toggle button in after 1s
     gsap.fromTo(
       buttonRef.current,
@@ -21,52 +23,33 @@ export default function DylanbotWidget() {
     );
 
     // Auto-open the panel after 2.5s
-    const t = setTimeout(() => {
-      setIsPanelMounted(true);
-      setIsOpen(true);
-    }, 2500);
-
+    const t = setTimeout(() => setIsOpen(true), 2500);
     return () => clearTimeout(t);
   }, []);
 
   useEffect(() => {
     if (!panelRef.current) return;
     if (isOpen) {
-      gsap.fromTo(
-        panelRef.current,
-        { opacity: 0, scale: 0.92, y: 16 },
-        { opacity: 1, scale: 1, y: 0, duration: 0.4, ease: 'back.out(1.7)' }
-      );
+      gsap.to(panelRef.current, {
+        opacity: 1, scale: 1, y: 0, duration: 0.4, ease: 'back.out(1.7)', pointerEvents: 'auto',
+      });
     } else {
       gsap.to(panelRef.current, {
-        opacity: 0,
-        scale: 0.92,
-        y: 16,
-        duration: 0.25,
-        ease: 'power2.in',
-        onComplete: () => setIsPanelMounted(false),
+        opacity: 0, scale: 0.92, y: 16, duration: 0.25, ease: 'power2.in', pointerEvents: 'none',
       });
     }
   }, [isOpen]);
 
-  const handleToggle = () => {
-    if (isOpen) {
-      setIsOpen(false);
-    } else {
-      setIsPanelMounted(true);
-      setIsOpen(true);
-    }
-  };
+  const handleToggle = () => setIsOpen((prev) => !prev);
 
   return (
     <div className="hidden md:flex fixed bottom-6 right-6 z-40 flex-col items-end gap-3">
-      {/* Chat panel */}
-      {isPanelMounted && (
-        <div
-          ref={panelRef}
-          className="w-80 bg-card/60 backdrop-blur-md border border-border rounded-2xl shadow-2xl overflow-hidden flex flex-col"
-          style={{ height: '440px' }}
-        >
+      {/* Chat panel — always mounted so ChatInterface retains conversation state */}
+      <div
+        ref={panelRef}
+        className="w-80 bg-card/60 backdrop-blur-md border border-border rounded-2xl shadow-2xl overflow-hidden flex flex-col"
+        style={{ height: '440px' }}
+      >
           {/* Header */}
           <div className="flex items-center gap-2.5 px-4 py-3 border-b border-border shrink-0 bg-card/30">
             <div className="relative w-8 h-8 rounded-full overflow-hidden shrink-0 border border-teal-500/40">
@@ -90,7 +73,6 @@ export default function DylanbotWidget() {
 
           <ChatInterface />
         </div>
-      )}
 
       {/* Toggle button */}
       <button
