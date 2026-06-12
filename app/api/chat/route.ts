@@ -9,7 +9,7 @@ export async function POST(request: Request) {
     const submitRes = await fetch(`${HF_SPACE}/gradio_api/call/chat`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ data: [message] }),
+      body: JSON.stringify({ data: [message, null] }),
     });
 
     if (!submitRes.ok) {
@@ -34,7 +34,7 @@ export async function POST(request: Request) {
       if (lines[i].trim() === 'event: complete' && lines[i + 1]?.startsWith('data: ')) {
         try {
           const parsed = JSON.parse(lines[i + 1].slice(6));
-          const data = parsed?.data?.[0];
+          const data = Array.isArray(parsed) ? parsed[0] : parsed?.data?.[0];
           reply = typeof data === 'string' ? data : JSON.stringify(data);
         } catch {
           // ignore parse error
