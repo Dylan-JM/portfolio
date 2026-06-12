@@ -16,7 +16,7 @@ function buildText(): string {
 
   const home = subCategoryContent.home;
 
-  lines.push(home.about.body);
+  lines.push((home.about as { body: string }).body);
   lines.push('');
 
   // ── What I Do ─────────────────────────────────────────────────────────────
