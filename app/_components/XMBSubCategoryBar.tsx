@@ -42,7 +42,7 @@ export default function XMBSubCategoryBar({
   };
 
   return (
-    <div className="flex flex-col gap-2 shrink-0 py-2 pl-2 pr-1 border-r border-border/50">
+    <div className="flex flex-col gap-2 shrink-0 py-2 pl-2 pr-1 border-r border-border/50 overflow-y-auto">
       {subItems.map((subItem) => (
         <button
           key={subItem.id}
