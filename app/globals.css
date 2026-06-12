@@ -41,8 +41,23 @@
   --ps3-purple: #A855F7;
   --ps3-pink: #EC4899;
   --ps3-dark: #0F172A;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
+  /* Default to dark values so the page renders correctly before the theme class is applied */
+  --background: oklch(0.06 0.01 250);
+  --foreground: oklch(0.93 0.02 260);
+  --ps3-bg-gradient: linear-gradient(135deg, #0a0a0c 0%, #0f0a12 25%, #1a0f1e 50%, #1e0a14 75%, #2a0a12 100%);
+  --ps3-bg-overlay: linear-gradient(to bottom, transparent 0%, transparent 50%, rgba(20, 10, 30, 0.4) 100%);
+  --ps3-wave-fill-1: rgba(30, 58, 95, 0.22);
+  --ps3-wave-fill-2: rgba(75, 42, 107, 0.2);
+  --ps3-wave-fill-3: rgba(92, 74, 155, 0.26);
+  --ps3-wave-fill-4: rgba(107, 90, 186, 0.18);
+  --ps3-wave-fill-5: rgba(74, 53, 133, 0.3);
+  --ps3-wave-opacity-1: 0.28;
+  --ps3-wave-opacity-2: 0.25;
+  --ps3-wave-opacity-3: 0.32;
+  --ps3-wave-opacity-4: 0.2;
+  --ps3-wave-opacity-5: 0.35;
+  --ps3-particle-colour: #f5e6c8;
+  --ps3-meteor-opacity: 0.35;
 }
 
 .light {
